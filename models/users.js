@@ -1,13 +1,13 @@
 import users from '../data/users.js';
 
 // GET ALL USERS
-export function getUsers() {
+export async function getUsers() {
   //Return all the users
   return users;
 }
 
 // GET A USER BY ID
-export function getUserByID(id) {
+export async function getUserByID(id) {
   //Find the user with the id given in the params
   const userById = users.find((user) => user.id === id);
   //Return the user object for the response
@@ -15,7 +15,7 @@ export function getUserByID(id) {
 }
 
 // CREATE A USER
-export function createUser(newUser) {
+export async function createUser(newUser) {
   //Add the new user to the data
   users.push(newUser);
   //Find the new user in the array
@@ -25,7 +25,7 @@ export function createUser(newUser) {
 }
 
 // UPDATE A USER BY ID
-export function updateUserByID(id, updatedUser) {
+export async function updateUserByID(id, updatedUser) {
   //Find the position of the user by id
   const foundItem = users.findIndex((user) => user.id === id);
   //Update the value of the item
@@ -35,19 +35,13 @@ export function updateUserByID(id, updatedUser) {
 }
 
 // DELETE A USER BY ID
-export function deleteUserByID(id) {
+export async function deleteUserByID(id) {
   //Find the position of the user by id
   const foundIndex = users.findIndex((user) => user.id === id);
   //Store the user in a variable
   const user = users[foundIndex];
   //Remove the user from the data
   users.splice(foundIndex, 1);
-  //Debug
-  console.log(user);
-  console.log(users);
   //Return the user for the response
   return user;
 }
-
-//Test the function
-deleteUserByID(21);
