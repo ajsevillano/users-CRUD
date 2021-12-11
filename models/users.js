@@ -14,10 +14,25 @@ export function getUserByID(id) {
   return userById;
 }
 
-getUserByID(1);
-
 // CREATE A USER
-export function createUser(newUser) {}
+export function createUser(newUser) {
+  //Add the new user to the data
+  users.push(newUser);
+  //Find the new user in the array
+  const lastUserAdded = users[users.length - 1];
+  //Return the new created user
+
+  return lastUserAdded;
+}
+
+//Test
+createUser({
+  id: 20,
+  first_name: 'pACO',
+  last_name: 'Turri',
+  email: 'kturri2@washington.edu',
+  catchphrase: 'User-centric multimedia collaboration',
+});
 
 // UPDATE A USER BY ID
 export function updateUserByID(id, updatedUser) {}
