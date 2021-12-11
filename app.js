@@ -48,6 +48,19 @@ app.post(`/users`, async function (req, res) {
   });
 });
 
+//UPDATE AN USER BY ID
+app.put('/users', async function (req, res) {
+  //Get the body from the params
+  const body = req.body;
+  //Call the function to add the new user
+  const updateUser = await updateUserByID(id, body);
+  //Return the response
+  res.json({
+    success: true,
+    payload: updateUser,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
