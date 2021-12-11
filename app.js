@@ -20,6 +20,16 @@ app.get('/users', async function (req, res) {
   });
 });
 
+// GET USER BY ID
+app.get(`/users/:id`, async function (req, res) {
+  const id = req.params.id;
+  const resultbyId = await getUserByID(id);
+  res.json({
+    success: true,
+    payload: resultbyId,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

@@ -8,8 +8,10 @@ export async function getUsers() {
 
 // GET A USER BY ID
 export async function getUserByID(id) {
+  //Convert the string id to a number
+  let userId = Number(id);
   //Find the user with the id given in the params
-  const userById = users.find((user) => user.id === id);
+  const userById = users.find((user) => user.id === userId);
   //Return the user object for the response
   return userById;
 }
