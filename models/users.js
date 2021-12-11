@@ -21,21 +21,28 @@ export function createUser(newUser) {
   //Find the new user in the array
   const lastUserAdded = users[users.length - 1];
   //Return the new created user
-
   return lastUserAdded;
 }
 
-//Test
-createUser({
-  id: 20,
-  first_name: 'pACO',
+// UPDATE A USER BY ID
+export function updateUserByID(id, updatedUser) {
+  // Find the position of the item
+  const foundItem = users.findIndex((user) => user.id === id);
+  //Change the value of the item
+  users[foundItem] = updatedUser;
+  //Debug
+  console.log(users);
+  //Return the item
+  return users[foundItem];
+}
+
+//Test the function
+updateUserByID(3, {
+  first_name: 'Manolo',
   last_name: 'Turri',
   email: 'kturri2@washington.edu',
   catchphrase: 'User-centric multimedia collaboration',
 });
-
-// UPDATE A USER BY ID
-export function updateUserByID(id, updatedUser) {}
 
 // DELETE A USER BY ID
 export function deleteUserByID(id) {}
