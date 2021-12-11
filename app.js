@@ -13,7 +13,9 @@ app.use(express.json());
 
 // GET ALL USERS
 app.get('/users', async function (req, res) {
+  //Call the function to get the users
   const result = await getUsers();
+  //Return the response
   res.json({
     success: true,
     payload: result,
@@ -22,11 +24,27 @@ app.get('/users', async function (req, res) {
 
 // GET USER BY ID
 app.get(`/users/:id`, async function (req, res) {
+  //Get the id from the params
   const id = req.params.id;
+  //Call the function to get the user by Id
   const resultbyId = await getUserByID(id);
+  //Return the response
   res.json({
     success: true,
     payload: resultbyId,
+  });
+});
+
+// CREATE AN USER
+app.post(`/users`, async function (req, res) {
+  //Get the body from the params
+  const postBody = req.body;
+  //Call the function to add the new user
+  const newUser = await createUser(postBody);
+  //Return the response
+  res.json({
+    success: true,
+    payload: newUser,
   });
 });
 

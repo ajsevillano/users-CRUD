@@ -28,8 +28,10 @@ export async function createUser(newUser) {
 
 // UPDATE A USER BY ID
 export async function updateUserByID(id, updatedUser) {
+  //Convert the string id to a number
+  let userId = Number(id);
   //Find the position of the user by id
-  const foundItem = users.findIndex((user) => user.id === id);
+  const foundItem = users.findIndex((user) => user.id === userId);
   //Update the value of the item
   users[foundItem] = updatedUser;
   //Return the user for the response
@@ -38,8 +40,10 @@ export async function updateUserByID(id, updatedUser) {
 
 // DELETE A USER BY ID
 export async function deleteUserByID(id) {
+  //Convert the string id to a number
+  let userId = Number(id);
   //Find the position of the user by id
-  const foundIndex = users.findIndex((user) => user.id === id);
+  const foundIndex = users.findIndex((user) => user.id === userId);
   //Store the user in a variable
   const user = users[foundIndex];
   //Remove the user from the data
