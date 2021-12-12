@@ -49,15 +49,30 @@ app.post(`/users`, async function (req, res) {
 });
 
 //UPDATE AN USER BY ID
-app.put('/users', async function (req, res) {
+app.put('/users/:id', async function (req, res) {
   //Get the body from the params
   const body = req.body;
+  //Get the id
+  const id = req.params.id;
   //Call the function to add the new user
   const updateUser = await updateUserByID(id, body);
   //Return the response
   res.json({
     success: true,
     payload: updateUser,
+  });
+});
+
+//DELETE AN USER BY ID
+app.delete('users/:id', async function (req, res) {
+  //Get the id
+  const id = req.params.id;
+  //Call the function to add the new user
+  const deleteUser = await deleteUserByID(id);
+  //Return the response
+  res.json({
+    success: true,
+    payload: deleteUser,
   });
 });
 
