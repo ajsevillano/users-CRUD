@@ -29,10 +29,7 @@ app.get(`/users/:id`, async function (req, res) {
   //Call the function to get the user by Id
   const resultbyId = await getUserByID(id);
   //Return the response
-  res.json({
-    success: true,
-    payload: resultbyId,
-  });
+  res.json(resultbyId);
 });
 
 // CREATE AN USER

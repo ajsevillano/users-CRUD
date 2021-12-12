@@ -12,8 +12,18 @@ export async function getUserByID(id) {
   let userId = Number(id);
   //Find the user with the id given in the params
   const userById = users.find((user) => user.id === userId);
+  //If the user doesn't exist, return the error response
+  if (!userById) {
+    return {
+      success: false,
+      payload: `The user with id ${userId} does not exist.`,
+    };
+  }
   //Return the user object for the response
-  return userById;
+  return {
+    success: true,
+    payload: userById,
+  };
 }
 
 // CREATE A USER
