@@ -32,10 +32,12 @@ export async function createUser(newUser) {
 export async function updateUserByID(id, updatedUser) {
   //Convert the string id to a number
   let userId = Number(id);
+  // Add the Id to the body (updateUser)
+  const UpdatedUserWithId = { id: userId, ...updatedUser };
   //Find the position of the user by id
   const foundItem = users.findIndex((user) => user.id === userId);
   //Update the value of the item
-  users[foundItem] = updatedUser;
+  users[foundItem] = UpdatedUserWithId;
   //Return the user for the response
   return users[foundItem];
 }
