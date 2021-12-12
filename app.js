@@ -54,10 +54,7 @@ app.put('/users/:id', async function (req, res) {
   //Call the function to add the new user
   const updateUser = await updateUserByID(id, body);
   //Return the response
-  res.json({
-    success: true,
-    payload: updateUser,
-  });
+  res.json(updateUser);
 });
 
 //DELETE AN USER BY ID

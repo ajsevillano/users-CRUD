@@ -40,6 +40,13 @@ export async function createUser(newUser) {
 
 // UPDATE A USER BY ID
 export async function updateUserByID(id, updatedUser) {
+  //If the object sent as body is empty, we return an error message
+  if (checkBodyObjIsEmpty(updatedUser)) {
+    return {
+      success: false,
+      payload: `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`,
+    };
+  }
   //Convert the string id to a number
   let userId = Number(id);
   // Add the Id to the body (updateUser)
@@ -48,8 +55,11 @@ export async function updateUserByID(id, updatedUser) {
   const foundItem = users.findIndex((user) => user.id === userId);
   //Update the value of the item
   users[foundItem] = UpdatedUserWithId;
-  //Return the user for the response
-  return users[foundItem];
+  //Return the payload if the update succeded
+  return {
+    success: true,
+    payload: users[foundItem],
+  };
 }
 
 // DELETE A USER BY ID
@@ -75,4 +85,9 @@ function generateID() {
   // Generate the next number
   let nextId = ++lastUserId;
   return nextId;
+}
+
+function checkBodyObjIsEmpty(body) {
+  //Check if the body  sent in the request is empty
+  return Object.keys(body).length === 0 ? true : false;
 }
