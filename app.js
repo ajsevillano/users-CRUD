@@ -39,10 +39,7 @@ app.post(`/users`, async function (req, res) {
   //Call the function to add the new user
   const newUser = await createUser(postBody);
   //Return the response
-  res.json({
-    success: true,
-    payload: newUser,
-  });
+  res.json(newUser);
 });
 
 //UPDATE AN USER BY ID

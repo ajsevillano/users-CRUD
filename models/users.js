@@ -28,6 +28,13 @@ export async function getUserByID(id) {
 
 // CREATE A USER
 export async function createUser(newUser) {
+  //If the object sent as body is empty, we return an error message
+  if (checkBodyObjIsEmpty(newUser)) {
+    return {
+      success: false,
+      payload: `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`,
+    };
+  }
   // Add the next id to the new object
   const NewUserWithId = { id: generateID(), ...newUser };
   //Add the new user to the data
@@ -35,7 +42,10 @@ export async function createUser(newUser) {
   //Find the new user in the array
   const lastUserAdded = users[users.length - 1];
   //Return the new created user for the response
-  return lastUserAdded;
+  return {
+    success: true,
+    payload: lastUserAdded,
+  };
 }
 
 // UPDATE A USER BY ID
