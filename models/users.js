@@ -14,27 +14,23 @@ export async function getUserByID(id) {
   const userById = users.find((user) => user.id === userId);
   //If the user doesn't exist, return the error response
   if (!userById) {
-    //Define the error msg
-    const errorMsg = `The user with id ${userId} does not exist.`;
-    //Call to the error handler
-    return errorHandler(errorMsg);
+    //Return the response for the error
+    return responseHandler(false, errorMsgNotExist(userId));
   }
   //Return the user object for the response
-  return {
-    success: true,
-    payload: userById,
-  };
+  return responseHandler(true, userById);
 }
 
 // CREATE A USER
 export async function createUser(newUser) {
+  //Check if the body is empty
+  const checkbody = checkBodyObjIsEmpty(newUser);
   //If the object sent as body is empty, we return an error message
-  if (checkBodyObjIsEmpty(newUser)) {
-    //Define the error msg
-    const errorMsg = `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`;
-    //Call to the error handler
-    return errorHandler(errorMsg);
+  if (checkbody) {
+    //Return the response for the error
+    return responseHandler(false, errorMsgNoBody);
   }
+
   // Add the next id to the new object
   const NewUserWithId = { id: generateID(), ...newUser };
   //Add the new user to the data
@@ -42,20 +38,17 @@ export async function createUser(newUser) {
   //Find the new user in the array
   const lastUserAdded = users[users.length - 1];
   //Return the new created user for the response
-  return {
-    success: true,
-    payload: lastUserAdded,
-  };
+  return responseHandler(true, lastUserAdded);
 }
 
 // UPDATE A USER BY ID
 export async function updateUserByID(id, updatedUser) {
+  //Check if the body is empty
+  const checkbody = checkBodyObjIsEmpty(updatedUser);
   //If the object sent as body is empty, we return an error message
-  if (checkBodyObjIsEmpty(updatedUser)) {
-    //Define the error msg
-    const errorMsg = `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`;
-    //Call to the error handler
-    return errorHandler(errorMsg);
+  if (checkbody) {
+    //Return the response for the error
+    return responseHandler(false, errorMsgNoBody);
   }
   //Convert the string id to a number
   let userId = Number(id);
@@ -66,10 +59,7 @@ export async function updateUserByID(id, updatedUser) {
   //Update the value of the item
   users[foundItem] = UpdatedUserWithId;
   //Return the payload if the update succeded
-  return {
-    success: true,
-    payload: users[foundItem],
-  };
+  return responseHandler(true, users[foundItem]);
 }
 
 // DELETE A USER BY ID
@@ -102,9 +92,15 @@ function checkBodyObjIsEmpty(body) {
   return Object.keys(body).length === 0 ? true : false;
 }
 
-function errorHandler(errorMsg) {
+const errorMsgNoBody = `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`;
+
+function errorMsgNotExist(userId) {
+  return `The user with id ${userId} does not exist.`;
+}
+
+function responseHandler(status, statusMsg) {
   return {
-    success: false,
-    payload: errorMsg,
+    success: status,
+    payload: statusMsg,
   };
 }
