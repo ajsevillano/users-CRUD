@@ -18,8 +18,10 @@ export async function getUserByID(id) {
 
 // CREATE A USER
 export async function createUser(newUser) {
+  // Add the next id to the new object
+  const NewUserWithId = { id: generateID(), ...newUser };
   //Add the new user to the data
-  users.push(newUser);
+  users.push(NewUserWithId);
   //Find the new user in the array
   const lastUserAdded = users[users.length - 1];
   //Return the new created user for the response
@@ -42,7 +44,6 @@ export async function updateUserByID(id, updatedUser) {
 export async function deleteUserByID(id) {
   //Convert the string id to a number
   let userId = Number(id);
-  console.log(userId);
   //Find the position of the user by id
   const foundIndex = users.findIndex((user) => user.id === userId);
   //Store the user in a variable
@@ -51,4 +52,15 @@ export async function deleteUserByID(id) {
   users.splice(foundIndex, 1);
   //Return the user for the response
   return user;
+}
+
+//OTHER FUNCTIONS
+function generateID() {
+  // Find the last user on the array
+  const lastUser = users[users.length - 1];
+  // Get the last user Id
+  let lastUserId = lastUser.id;
+  // Generate the next number
+  let nextId = ++lastUserId;
+  return nextId;
 }
