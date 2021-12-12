@@ -30,10 +30,10 @@ export async function getUserByID(id) {
 export async function createUser(newUser) {
   //If the object sent as body is empty, we return an error message
   if (checkBodyObjIsEmpty(newUser)) {
-    return {
-      success: false,
-      payload: `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`,
-    };
+    //Define the error msg
+    const errorMsg = `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`;
+    //Call to the error handler
+    return errorHandler(errorMsg);
   }
   // Add the next id to the new object
   const NewUserWithId = { id: generateID(), ...newUser };
@@ -52,10 +52,10 @@ export async function createUser(newUser) {
 export async function updateUserByID(id, updatedUser) {
   //If the object sent as body is empty, we return an error message
   if (checkBodyObjIsEmpty(updatedUser)) {
-    return {
-      success: false,
-      payload: `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`,
-    };
+    //Define the error msg
+    const errorMsg = `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`;
+    //Call to the error handler
+    return errorHandler(errorMsg);
   }
   //Convert the string id to a number
   let userId = Number(id);
