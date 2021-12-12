@@ -64,7 +64,7 @@ app.put('/users/:id', async function (req, res) {
 });
 
 //DELETE AN USER BY ID
-app.delete('users/:id', async function (req, res) {
+app.delete('/users/:id', async function (req, res) {
   //Get the id
   const id = req.params.id;
   //Call the function to add the new user

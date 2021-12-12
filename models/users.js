@@ -42,6 +42,7 @@ export async function updateUserByID(id, updatedUser) {
 export async function deleteUserByID(id) {
   //Convert the string id to a number
   let userId = Number(id);
+  console.log(userId);
   //Find the position of the user by id
   const foundIndex = users.findIndex((user) => user.id === userId);
   //Store the user in a variable
