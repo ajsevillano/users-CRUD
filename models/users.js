@@ -14,10 +14,10 @@ export async function getUserByID(id) {
   const userById = users.find((user) => user.id === userId);
   //If the user doesn't exist, return the error response
   if (!userById) {
-    return {
-      success: false,
-      payload: `The user with id ${userId} does not exist.`,
-    };
+    //Define the error msg
+    const errorMsg = `The user with id ${userId} does not exist.`;
+    //Call to the error handler
+    return errorHandler(errorMsg);
   }
   //Return the user object for the response
   return {
@@ -100,4 +100,11 @@ function generateID() {
 function checkBodyObjIsEmpty(body) {
   //Check if the body  sent in the request is empty
   return Object.keys(body).length === 0 ? true : false;
+}
+
+function errorHandler(errorMsg) {
+  return {
+    success: false,
+    payload: errorMsg,
+  };
 }
