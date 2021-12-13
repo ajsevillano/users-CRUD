@@ -203,3 +203,13 @@ svg {
 .bold {
   font-weight: 500;
 }
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0.5s, opacity 0.5s;
+  -moz-transition: visibility 0.5s, opacity 0.5s;
+  -ms-transition: visibility 0.5s, opacity 0.5s;
+  -o-transition: visibility 0.5s, opacity 0.5s;
+  transition: visibility 0.5s, opacity 0.5s;
+}

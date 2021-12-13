@@ -86,9 +86,14 @@ async function deleteUser(id) {
   const fetchResponse = await fetch(`http://localhost:3000/users/${id}`, {
     method: 'DELETE',
   });
-  //Store the response
+  //Store the response.
   const response = await fetchResponse.json();
-  console.log(response.payload);
-  tableRows.removeChild(row);
-  alert(`The user ${response.payload.first_name} has been deleted`);
+  //Hide the row with an animation
+  row.classList.add('hidden');
+  //Remove the row from the DOM after 0.5sec (Like the animation)
+  setTimeout(() => {
+    tableRows.removeChild(row);
+  }, 500);
+
+  // alert(`The user ${response.payload.first_name} has been deleted`);
 }
