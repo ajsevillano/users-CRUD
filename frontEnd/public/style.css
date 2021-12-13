@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #0b2138;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.list-container {
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+input {
+  width: 90%;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  outline: none;
+  padding: 8px 8px 8px 16px;
+  font-size: 1.8rem;
+  color: #0b2138;
+  font-weight: 600;
+  flex: 1;
+}
+
+input:focus {
+  border-color: #3498db;
+}
+
+select:focus {
+  border-color: #3498db;
+}
+
+/* label {
+  margin-right: 1rem;
+} */
+
+label p {
+  margin-bottom: 0.5rem;
+}
+
+.add-to-list-button {
+  align-self: end;
+  background-color: #ff4163;
+}
+
+.add-to-list-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 3.4rem;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  outline-color: #d4d4d4;
+  border-radius: 5px;
+}
+
+svg {
+  margin-right: 1rem;
+}
+
+.users-table-container {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.table-header-row {
+  width: 25%;
+}
+
+.table-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+.row:nth-child(odd) {
+  background-color: #ebebeb;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  color: rgb(37, 37, 37);
+  padding: 0.5rem 1rem;
+}
+
+.with-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* TABLE ROWS WIDTH */
+.w-15 {
+  width: 15%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-40 {
+  width: 40%;
+}

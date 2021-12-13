@@ -1,13 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Todo List</title>
   </head>
   <body>
-    <h1>Test</h1>
-    <script src="../main.js"></script>
+    <div class="container">
+      <h1 class="title">User list</h1>
+      <div class="list-container">
+        <label>
+          <p>First Name</p>
+          <input id="first-name" />
+        </label>
+        <label>
+          <p>Last name</p>
+          <input id="last-name" />
+        </label>
+        <label>
+          <p>Email</p>
+          <input id="email" />
+        </label>
+        <label>
+          <p>Catchphrase</p>
+          <input id="catchphrase" />
+        </label>
+        <button id="add-to-list" class="add-to-list-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-circle-plus"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ffffff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <line x1="9" y1="12" x2="15" y2="12" />
+            <line x1="12" y1="9" x2="12" y2="15" /></svg
+          >Add To List
+        </button>
+      </div>
+      <div class="users-table-container">
+        <div class="table-header">
+          <div class="table-header-row">First Name</div>
+          <div class="table-header-row">Last Name</div>
+          <div class="table-header-row">Email</div>
+          <div class="table-header-row">Catchphrase</div>
+        </div>
+        <div class="table-rows">
+          <div class="row">
+            <div class="w-20">Devi</div>
+            <div class="w-20">Whale</div>
+            <div class="w-20">dwhale0@last.fm</div>
+            <div class="table-rows-row with-buttons w-40">
+              <div>Synergized exuding firmware</div>
+              <div>Update</div>
+              <div>Delete</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="w-20">Devi</div>
+            <div class="w-20">Whale</div>
+            <div class="w-20">dwhale0@last.fm</div>
+            <div class="table-rows-row with-buttons w-40">
+              <div>Synergized exuding firmware</div>
+              <div>Update</div>
+              <div>Delete</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="main.js"></script>
+    </div>
   </body>
 </html>
