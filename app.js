@@ -1,4 +1,5 @@
 import express from 'express';
+import { html } from './config.js';
 import {
   getUserByID,
   getUsers,
@@ -9,7 +10,13 @@ import {
 const PORT = 3000;
 const app = express();
 
+app.use(express.static('public'));
 app.use(express.json());
+
+/** DO NOT CHANGE THIS ROUTE - it serves our front-end */
+app.get('/', function (req, res) {
+  res.sendFile(html);
+});
 
 // GET ALL USERS
 app.get('/users', async function (req, res) {
