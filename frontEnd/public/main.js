@@ -4,27 +4,36 @@ async function fetchUsers() {
   const response = await fetch('http://localhost:3000/users');
   const data = await response.json();
   data.payload.map((user) =>
-    createRow(user.first_name, user.last_name, user.email, user.catchphrase)
+    createRow(
+      user.id,
+      user.first_name,
+      user.last_name,
+      user.email,
+      user.catchphrase
+    )
   );
 }
 
 fetchUsers();
 
-function createRow(firstName, lastName, email, catchphrase) {
+function createRow(id, firstName, lastName, email, catchphrase) {
   //Create the row div and attach it to table Rows div
   const divRow = document.createElement('div');
   divRow.classList.add('row');
+  divRow.setAttribute('id', `row-${id}`);
   tableRows.appendChild(divRow);
 
   //Create the row with the name element
   const nameElement = document.createElement('div');
   nameElement.classList.add('w-15');
+  nameElement.classList.add('bold');
   nameElement.innerText = firstName;
   divRow.appendChild(nameElement);
 
   //Create the row with the last_name element
   const lastNameElement = document.createElement('div');
   lastNameElement.classList.add('w-15');
+  lastNameElement.classList.add('bold');
   lastNameElement.innerText = lastName;
   divRow.appendChild(lastNameElement);
 
@@ -57,11 +66,29 @@ function createRow(firstName, lastName, email, catchphrase) {
   lastRow.appendChild(updateButton);
 
   //Create the delete button
-  const deleteButton = document.createElement('div');
+  let deleteButton = document.createElement('div');
+  deleteButton.classList.add('delete-button');
   deleteButton.classList.add('w-15');
   deleteButton.classList.add('align-end');
   deleteButton.classList.add('small-button');
   deleteButton.classList.add('alert-color');
   deleteButton.innerText = 'Delete';
   lastRow.appendChild(deleteButton);
+  deleteButton.setAttribute('id', id);
+
+  //Add event listener to the button
+  deleteButton.addEventListener('click', () => deleteUser(id));
+}
+
+async function deleteUser(id) {
+  const row = document.querySelector(`#row-${id}`);
+  //We send a DELETE fetch and wait for the response
+  const fetchResponse = await fetch(`http://localhost:3000/users/${id}`, {
+    method: 'DELETE',
+  });
+  //Store the response
+  const response = await fetchResponse.json();
+  console.log(response.payload);
+  tableRows.removeChild(row);
+  alert(`The user ${response.payload.first_name} has been deleted`);
 }

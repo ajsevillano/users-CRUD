@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 * {
   margin: 0;
@@ -7,8 +7,8 @@
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  color: #0b2138;
+  font-family: 'Inter', sans-serif;
+  color: #031b4e;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,8 +71,8 @@ label p {
   width: 20rem;
   height: 3.4rem;
   color: #ffffff;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
   font-size: 1.1rem;
   border: none;
   cursor: pointer;
@@ -90,6 +90,8 @@ label p {
   margin: 0.3rem;
   border-radius: 5px;
   font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
 }
 
 .success-color {
@@ -120,7 +122,6 @@ svg {
   flex-direction: row;
   width: 100%;
   background-color: #e7ebf0;
-
   color: #0b2138;
   font-weight: 600;
   padding: 0.5rem 1rem;
@@ -197,4 +198,8 @@ svg {
 
 .grey-font {
   color: grey;
+}
+
+.bold {
+  font-weight: 500;
 }
