@@ -28,7 +28,7 @@ body {
   font-size: 3rem;
 }
 
-.list-container {
+.add-user-form-container {
   display: flex;
   width: 100%;
   margin-top: 1rem;
@@ -55,17 +55,13 @@ select:focus {
   border-color: #3498db;
 }
 
-/* label {
-  margin-right: 1rem;
-} */
-
 label p {
   margin-bottom: 0.5rem;
 }
 
 .add-to-list-button {
   align-self: end;
-  background-color: #ff4163;
+  background-color: #3498db;
 }
 
 .add-to-list-button {
@@ -84,6 +80,26 @@ label p {
   border-radius: 5px;
 }
 
+.small-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 20rem; */
+  height: 2rem;
+  color: white;
+  margin: 0.3rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.success-color {
+  background-color: #1abc9c;
+}
+
+.alert-color {
+  background-color: #ff4163;
+}
+
 svg {
   margin-right: 1rem;
 }
@@ -93,14 +109,19 @@ svg {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 30px 14px 14px hsl(0deg 0% 92% / 30%);
+  border: #e7ebf0 1px solid;
+  border-radius: 0.3rem;
+  margin-bottom: 3rem;
 }
 
 .table-header {
   display: flex;
   flex-direction: row;
   width: 100%;
-  background-color: #3498db;
-  color: white;
+  background-color: #e7ebf0;
+
+  color: #0b2138;
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-top-left-radius: 0.3rem;
@@ -117,24 +138,24 @@ svg {
 }
 
 .row:nth-child(even) {
-  background-color: #f3f3f3;
+  background-color: #ffffff;
 }
 
 .row:nth-child(odd) {
-  background-color: #ebebeb;
+  background-color: #f4f7fc;
 }
 
 .row {
   display: flex;
   width: 100%;
   align-items: center;
-  color: rgb(37, 37, 37);
   padding: 0.5rem 1rem;
 }
 
 .with-buttons {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  /* justify-content: space-between; */
 }
 
 /* TABLE ROWS WIDTH */
@@ -146,6 +167,34 @@ svg {
   width: 20%;
 }
 
+.w-25 {
+  width: 25%;
+}
+
 .w-40 {
   width: 40%;
+}
+
+.w-45 {
+  width: 45%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.align-end {
+  text-align: end;
+}
+
+.grey-font {
+  color: grey;
 }
