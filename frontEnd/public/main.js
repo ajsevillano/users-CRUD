@@ -89,19 +89,29 @@ async function deleteUser(id) {
   });
   //Store the response.
   const response = await fetchResponse.json();
+  //Hide the row with an Fade out animation
+  row.classList.add('hidden');
+  //Remove the row from the DOM after 0.5sec
+  setTimeout(() => {
+    tableRows.removeChild(row);
+  }, 450);
+  //Create an alert to show user has been delete.
   let deleteWarning = document.createElement('div');
   deleteWarning.innerText = `User ${response.payload.first_name} has been deleted`;
   deleteWarning.classList.add('delete-warning');
   container.appendChild(deleteWarning);
-  //Hide the row with an animation
-  row.classList.add('hidden');
+  //After show the deleteWarning wait and move the deleteWarning down
+  setTimeout(() => {
+    deleteWarning.classList.add('slide-down-animation');
+  }, 10);
+  //After 1.5s hide the deleteWarning up
+  setTimeout(() => {
+    deleteWarning.classList.add('slide-up-animation');
+  }, 1500);
+  //Remove the deleteWarning alert from the DOM after 0.6sec
   setTimeout(() => {
     container.removeChild(deleteWarning);
-  }, 1500);
-  //Remove the row from the DOM after 0.5sec (Like the animation)
-  setTimeout(() => {
-    tableRows.removeChild(row);
-  }, 500);
+  }, 1600);
 
   // alert(`The user ${response.payload.first_name} has been deleted`);
 }

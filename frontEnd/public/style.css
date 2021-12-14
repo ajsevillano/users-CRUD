@@ -59,6 +59,10 @@ label p {
   margin-bottom: 0.5rem;
 }
 
+h1 {
+  margin-top: 3rem;
+}
+
 .add-to-list-button {
   align-self: end;
   background-color: #3498db;
@@ -125,8 +129,6 @@ svg {
   color: #0b2138;
   font-weight: 600;
   padding: 0.5rem 1rem;
-  border-top-left-radius: 0.3rem;
-  border-top-right-radius: 0.3rem;
 }
 
 .table-header-row {
@@ -215,14 +217,28 @@ svg {
 }
 
 .delete-warning {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #1abc9c;
+  color: white;
   position: fixed;
-  top: 0;
   min-width: 300px;
   z-index: 100;
   text-align: center;
   padding: 1rem;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  top: -250px;
+}
+
+.slide-down-animation {
+  top: 0;
+  transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.slide-up-animation {
+  top: -250px;
+  transition: top 300ms cubic-bezier(0.7, 0.04, 0.03, 0.94);
+  overflow: hidden;
+  box-sizing: border-box;
 }
