@@ -1,4 +1,5 @@
 const tableRows = document.querySelector('.table-rows');
+const container = document.querySelector('.container');
 
 async function fetchUsers() {
   const response = await fetch('http://localhost:3000/users');
@@ -88,8 +89,15 @@ async function deleteUser(id) {
   });
   //Store the response.
   const response = await fetchResponse.json();
+  let deleteWarning = document.createElement('div');
+  deleteWarning.innerText = `User ${response.payload.first_name} has been deleted`;
+  deleteWarning.classList.add('delete-warning');
+  container.appendChild(deleteWarning);
   //Hide the row with an animation
   row.classList.add('hidden');
+  setTimeout(() => {
+    container.removeChild(deleteWarning);
+  }, 1500);
   //Remove the row from the DOM after 0.5sec (Like the animation)
   setTimeout(() => {
     tableRows.removeChild(row);

@@ -213,3 +213,16 @@ svg {
   -o-transition: visibility 0.5s, opacity 0.5s;
   transition: visibility 0.5s, opacity 0.5s;
 }
+
+.delete-warning {
+  background-color: #d4edda;
+  color: #155724;
+  position: fixed;
+  top: 0;
+  min-width: 300px;
+  z-index: 100;
+  text-align: center;
+  padding: 1rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
