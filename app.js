@@ -11,6 +11,7 @@ const PORT = 3000;
 const app = express();
 
 app.use(express.static('frontEnd/public'));
+app.use(express.static('frontEnd/libs'));
 app.use(express.json());
 
 /** DO NOT CHANGE THIS ROUTE - it serves our front-end */
