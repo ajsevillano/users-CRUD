@@ -1,12 +1,18 @@
+//Helper functions
 import { alertAnimation, removeRowAnimation } from '../animations.js';
+import { fetchDelete, fetchUsers } from '../fetch.js';
 
 const tableRows = document.querySelector('.table-rows');
 const container = document.querySelector('.container');
 
-async function fetchUsers() {
-  const response = await fetch('http://localhost:3000/users');
-  const data = await response.json();
-  data.payload.map((user) =>
+//Start the app
+mapGetfetchData();
+
+//Map the data from the get Fetch
+async function mapGetfetchData() {
+  const response = await fetchUsers();
+  // Create every Row in the users table in the DOM.
+  response.payload.map((user) =>
     createRow(
       user.id,
       user.first_name,
@@ -16,8 +22,6 @@ async function fetchUsers() {
     )
   );
 }
-
-fetchUsers();
 
 function createRow(id, firstName, lastName, email, catchphrase) {
   //Create the row div and attach it to table Rows div
@@ -108,15 +112,4 @@ function removeAlert(deleteAlert) {
   setTimeout(() => {
     container.removeChild(deleteAlert);
   }, 1600);
-}
-
-//FETCH FUNCTIONS
-async function fetchDelete(id) {
-  //We send a DELETE fetch and wait for the response
-  const fetchResponse = await fetch(`http://localhost:3000/users/${id}`, {
-    method: 'DELETE',
-  });
-  //Store the response.
-  const response = await fetchResponse.json();
-  return response;
 }
