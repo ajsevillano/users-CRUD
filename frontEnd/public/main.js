@@ -92,7 +92,7 @@ async function deleteUser(id) {
 function createAlert(response) {
   //Create an alert to show user has been delete.
   let deleteAlert = document.createElement('div');
-  deleteAlert.innerText = `User ${response.payload.first_name} has been deleted`;
+  deleteAlert.innerText = `User ${response.payload.first_name} ${response.payload.last_name} has been deleted`;
   deleteAlert.classList.add('delete-warning');
   container.appendChild(deleteAlert);
   //We run an animation to show and hide the Alert
