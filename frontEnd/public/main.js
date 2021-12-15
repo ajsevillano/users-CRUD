@@ -113,3 +113,43 @@ function removeAlert(deleteAlert) {
     container.removeChild(deleteAlert);
   }, 1600);
 }
+
+/// GET DATA FROM THE ADD USER FORM
+
+let formOject = { firstName: '', lastName: '', email: '', catchphrase: '' };
+
+//Get the first Name
+const firstName = document.querySelector('#first-name');
+firstName.addEventListener('keyup', getData);
+function getData(e) {
+  return (formOject.firstName = e.target.value);
+}
+
+//Get last name
+const lastName = document.querySelector('#last-name');
+lastName.addEventListener('keyup', getLastName);
+function getLastName(e) {
+  return (formOject.lastName = e.target.value);
+}
+
+//Get email
+const email = document.querySelector('#email');
+email.addEventListener('keyup', getEmail);
+function getEmail(e) {
+  return (formOject.email = e.target.value);
+}
+
+//Get catchphrase
+const catchphrase = document.querySelector('#catchphrase');
+catchphrase.addEventListener('keyup', getCatchphrase);
+function getCatchphrase(e) {
+  return (formOject.catchphrase = e.target.value);
+}
+
+const addToList = document.querySelector('#add-to-list');
+
+addToList.addEventListener('click', showObject);
+
+function showObject() {
+  console.log(formOject);
+}
