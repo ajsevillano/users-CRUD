@@ -4,8 +4,6 @@ import { fetchDelete, fetchUsers, fetchCreate } from '../fetch.js';
 import { generateTableRow } from '../generateTableRow.js';
 import { createAlert } from '../alert/createAlert.js';
 
-const container = document.querySelector('.container');
-
 //Start the app
 startApp();
 
@@ -69,5 +67,6 @@ addNewUser.addEventListener('click', createUser);
 
 async function createUser() {
   const response = await fetchCreate(formOject);
-  console.log(response);
+  //Create an alert to confirm user has been deleted
+  createAlert(response, 'create');
 }

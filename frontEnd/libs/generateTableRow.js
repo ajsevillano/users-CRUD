@@ -64,9 +64,14 @@ export function generateTableRow(
   ];
 
   //Create the update button
-  createDeleteButton(updateButtonClasses, lastRow, id);
+  createDeleteButton(updateButtonClasses, lastRow, id, 'Update');
   //Create the delete button
-  const deleteButton = createDeleteButton(dangerButtonClasses, lastRow, id);
+  const deleteButton = createDeleteButton(
+    dangerButtonClasses,
+    lastRow,
+    id,
+    'Delete'
+  );
   //Add event listener to the button
   deleteButton.addEventListener('click', () => deleteUser(id));
 }

@@ -216,7 +216,7 @@ svg {
   transition: visibility 0.5s, opacity 0.5s;
 }
 
-.delete-warning {
+.alert-dialog {
   background-color: #1abc9c;
   color: white;
   position: fixed;
