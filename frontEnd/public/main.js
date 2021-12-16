@@ -1,16 +1,16 @@
 //Helper functions
-import { alertAnimation, removeRowAnimation } from '../alert/animations.js';
-import { fetchDelete, fetchUsers } from '../fetch.js';
+import { removeRowAnimation } from '../alert/animations.js';
+import { fetchDelete, fetchUsers, fetchCreate } from '../fetch.js';
 import { generateTableRow } from '../generateTableRow.js';
 import { createAlert } from '../alert/createAlert.js';
 
 const container = document.querySelector('.container');
 
 //Start the app
-mapGetfetchData();
+startApp();
 
 //Map the data from the get Fetch
-async function mapGetfetchData() {
+async function startApp() {
   const response = await fetchUsers();
   // Create every Row in the users table in the DOM.
   response.payload.map((user) =>
@@ -35,7 +35,7 @@ async function deleteUser(id) {
 }
 
 /// GET DATA FROM THE ADD USER FORM
-let formOject = { firstName: '', lastName: '', email: '', catchphrase: '' };
+let formOject = { first_name: '', last_name: '', email: '', catchphrase: '' };
 
 function updateFormObjectValues(e, key) {
   return (formOject[key] = e.target.value);
@@ -44,13 +44,13 @@ function updateFormObjectValues(e, key) {
 //Get the first Name
 const firstName = document.querySelector('#first-name');
 firstName.addEventListener('keyup', (e) =>
-  updateFormObjectValues(e, 'firstName')
+  updateFormObjectValues(e, 'first_name')
 );
 
 //Get last name
 const lastName = document.querySelector('#last-name');
 lastName.addEventListener('keyup', (e) =>
-  updateFormObjectValues(e, 'lastName')
+  updateFormObjectValues(e, 'last_name')
 );
 
 //Get email
@@ -65,8 +65,9 @@ catchphrase.addEventListener('keyup', (e) =>
 
 //SEND FORM BUTTON
 const addNewUser = document.querySelector('#add-user-button');
-addNewUser.addEventListener('click', showObject);
+addNewUser.addEventListener('click', createUser);
 
-function showObject() {
-  console.log(formOject);
+async function createUser() {
+  const response = await fetchCreate(formOject);
+  console.log(response);
 }
