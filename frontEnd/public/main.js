@@ -32,11 +32,16 @@ async function deleteUser(id) {
   createAlert(response);
 }
 
-/// GET DATA FROM THE ADD USER FORM
-let formOject = { first_name: '', last_name: '', email: '', catchphrase: '' };
-
 function updateFormObjectValues(e, key) {
-  return (formOject[key] = e.target.value);
+  let value = '';
+  //Easter Egg
+  if (key === 'first_name' && e.target.value === 'Mireia') {
+    value = `👶 ${e.target.value}`;
+  } else {
+    value = e.target.value;
+  }
+
+  return (formOject[key] = value);
 }
 
 //Get the first Name
@@ -65,6 +70,10 @@ catchphrase.addEventListener('keyup', (e) =>
 const addNewUser = document.querySelector('#add-user-button');
 addNewUser.addEventListener('click', createUser);
 
+/// GET DATA FROM THE ADD USER FORM
+let formOject = { first_name: '', last_name: '', email: '', catchphrase: '' };
+
+//POST THE NEW USER
 async function createUser() {
   const response = await fetchCreate(formOject);
   //Create an alert to confirm user has been deleted
