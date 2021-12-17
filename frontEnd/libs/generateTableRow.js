@@ -1,4 +1,4 @@
-import { createDeleteButton } from '../createButtons.js';
+import { createButton } from '../createButtons.js';
 
 const tableRows = document.querySelector('.table-rows');
 
@@ -17,61 +17,47 @@ export function generateTableRow(
   tableRows.appendChild(divRow);
 
   //Create the row with the name element
-  const nameElement = document.createElement('div');
-  nameElement.classList.add('w-15');
-  nameElement.classList.add('bold');
-  nameElement.innerText = firstName;
-  divRow.appendChild(nameElement);
+  generateColums(firstName, divRow, ['w-15', 'bold']);
 
   //Create the row with the last_name element
-  const lastNameElement = document.createElement('div');
-  lastNameElement.classList.add('w-15');
-  lastNameElement.classList.add('bold');
-  lastNameElement.innerText = lastName;
-  divRow.appendChild(lastNameElement);
+  generateColums(lastName, divRow, ['w-15', 'bold']);
 
   //Create the row with the email element
-  const emailElement = document.createElement('div');
-  emailElement.classList.add('w-25');
-  emailElement.innerText = email;
-  divRow.appendChild(emailElement);
+  generateColums(email, divRow, ['w-25']);
 
   //Create the last row element  <div class="table-rows-row with-buttons w-50">
+  generateLastColumn(divRow, catchphrase, id, deleteUser);
+}
+
+function generateLastColumn(divRow, catchphrase, id, deleteUser) {
   const lastRow = document.createElement('div');
-  lastRow.classList.add('table-rows-row');
-  lastRow.classList.add('with-buttons');
-  lastRow.classList.add('w-45');
-  divRow.appendChild(lastRow);
-
-  //Create the element with the cathphrase element
-  const catchPhrase = document.createElement('div');
-  catchPhrase.classList.add('w-70');
-  catchPhrase.innerText = catchphrase;
-  lastRow.appendChild(catchPhrase);
-
-  const dangerButtonClasses = [
-    'w-15',
-    'align-end',
-    'small-button',
-    'alert-color',
-  ];
-
-  const updateButtonClasses = [
-    'w-15',
-    'align-end',
-    'small-button',
-    'success-color',
-  ];
-
+  //Create the last row element  <div class="table-rows-row with-buttons w-50">
+  lastRow.classList.add('table-rows-row', 'with-buttons', 'w-45');
+  //Create the catchphrase column
+  generateColums(catchphrase, lastRow, ['w-70']);
   //Create the update button
-  createDeleteButton(updateButtonClasses, lastRow, id, 'Update');
+  createButton(
+    ['w-15', 'align-end', 'small-button', 'success-color'],
+    lastRow,
+    id,
+    'Update'
+  );
   //Create the delete button
-  const deleteButton = createDeleteButton(
-    dangerButtonClasses,
+  const deleteButton = createButton(
+    ['w-15', 'align-end', 'small-button', 'alert-color'],
     lastRow,
     id,
     'Delete'
   );
   //Add event listener to the button
   deleteButton.addEventListener('click', () => deleteUser(id));
+  return divRow.appendChild(lastRow);
+}
+
+function generateColums(innerText = '', divRow, styles) {
+  const nameElement = document.createElement('div');
+  styles.map((element) => nameElement.classList.add(`${element}`));
+  nameElement.innerText = innerText;
+  divRow.appendChild(nameElement);
+  return nameElement;
 }
