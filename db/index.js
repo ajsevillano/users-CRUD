@@ -1,5 +1,5 @@
 import pg from 'pg';
-import dbConfig from '../dbConfig.js';
+import dbConfig from './dbConfig.js';
 
 const pool = new pg.Pool({
   user: dbConfig.user,
