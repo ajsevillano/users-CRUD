@@ -1,9 +1,11 @@
 import users from '../data/users.js';
+import query from '../db/index.js';
 
 // GET ALL USERS
 export async function getUsers() {
   //Return all the users
-  return users;
+  const data = await query(`SELECT * FROM  users;`);
+  return data.rows;
 }
 
 // GET A USER BY ID

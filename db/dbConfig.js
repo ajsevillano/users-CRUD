@@ -7,5 +7,3 @@ const dbConfig = {
 };
 
 export default dbConfig;
-
-console.log(dbConfig);
