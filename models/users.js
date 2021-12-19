@@ -5,7 +5,7 @@ import query from '../db/index.js';
 export async function getUsers() {
   //Return all the users
   const data = await query(`SELECT * FROM  users;`);
-  return data.rows;
+  return responseHandler(true, data.rows);
 }
 
 // GET A USER BY ID
@@ -69,9 +69,9 @@ export async function deleteUserByID(id) {
   //Convert the string id to a number
   let userId = Number(id);
   //Find the position of the user by id
-  const sqlQuery = `DELETE FROM users WHERE id=$1 RETURNING first_name,last_name;`;
+  const sqlQuery = `DELETE FROM users WHERE id=$1 RETURNING *;`;
   const data = await query(sqlQuery, [userId]);
-  return data.rows;
+  return responseHandler(true, data.rows);
 }
 
 //OTHER FUNCTIONS

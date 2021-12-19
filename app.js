@@ -24,10 +24,7 @@ app.get('/users', async function (req, res) {
   //Call the function to get the users
   const result = await getUsers();
   //Return the response
-  res.json({
-    success: true,
-    payload: result,
-  });
+  res.json(result);
 });
 
 // GET USER BY ID
@@ -69,10 +66,7 @@ app.delete('/users/:id', async function (req, res) {
   //Call the function to add the new user
   const deleteUser = await deleteUserByID(id);
   //Return the response
-  res.json({
-    success: true,
-    payload: deleteUser,
-  });
+  res.json(deleteUser);
 });
 
 app.listen(PORT, () => {

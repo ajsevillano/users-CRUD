@@ -33,5 +33,6 @@ export async function fetchDelete(id) {
   });
   //Store the response.
   const response = await fetchResponse.json();
+  console.log(response);
   return response;
 }
