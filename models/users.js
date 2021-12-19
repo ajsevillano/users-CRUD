@@ -69,13 +69,9 @@ export async function deleteUserByID(id) {
   //Convert the string id to a number
   let userId = Number(id);
   //Find the position of the user by id
-  const foundIndex = users.findIndex((user) => user.id === userId);
-  //Store the user in a variable
-  const user = users[foundIndex];
-  //Remove the user from the data
-  users.splice(foundIndex, 1);
-  //Return the user for the response
-  return user;
+  const sqlQuery = `DELETE FROM users WHERE id=$1 RETURNING first_name,last_name;`;
+  const data = await query(sqlQuery, [userId]);
+  return data.rows;
 }
 
 //OTHER FUNCTIONS
