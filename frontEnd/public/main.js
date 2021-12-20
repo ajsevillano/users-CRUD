@@ -10,8 +10,14 @@ startApp();
 //Map the data from the get Fetch
 async function startApp() {
   const response = await fetchUsers();
+
+  //Order the response by id
+  const orderedResponseById = response.payload.sort(function (a, b) {
+    return a.id - b.id || a.name.localeCompare(b.name);
+  });
+
   // Create every Row in the users table in the DOM.
-  response.payload.map((user) =>
+  orderedResponseById.map((user) =>
     generateTableRow(
       user.id,
       user.first_name,
@@ -37,26 +43,25 @@ function updateFormObjectValues(e, key) {
 
 //Get the first Name
 const firstName = document.querySelector('#first-name');
-createEventListeners(firstName);
+firstName.addEventListener('keyup', (e) =>
+  updateFormObjectValues(e, 'first_name')
+);
 
 //Get last name
 const lastName = document.querySelector('#last-name');
-createEventListeners(lastName);
+lastName.addEventListener('keyup', (e) =>
+  updateFormObjectValues(e, 'last_name')
+);
 
 //Get email
 const email = document.querySelector('#email');
-createEventListeners(email);
+email.addEventListener('keyup', (e) => updateFormObjectValues(e, 'email'));
 
 //Get catchphrase
 const catchphrase = document.querySelector('#catchphrase');
-createEventListeners(catchphrase);
-
-//CREATE THE EVENT LISTENERS
-function createEventListeners(formInput) {
-  formInput.addEventListener('keyup', (e) =>
-    updateFormObjectValues(e, `'${formInput}'`)
-  );
-}
+catchphrase.addEventListener('keyup', (e) =>
+  updateFormObjectValues(e, 'catchphrase')
+);
 
 //SEND FORM BUTTON
 const addNewUser = document.querySelector('#add-user-button');
@@ -70,7 +75,7 @@ async function createUser() {
   const response = await fetchCreate(formOject);
   //Create an alert to confirm user has been deleted
   console.log(response);
-  // createAlert(response, 'create');
+  createAlert(response, 'create');
 }
 
 //DELETE AN USER BY ID
