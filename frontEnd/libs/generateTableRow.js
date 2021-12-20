@@ -1,4 +1,5 @@
 import { createButton } from '../createButtons.js';
+import modal from '../modal.js';
 
 const tableRows = document.querySelector('.table-rows');
 
@@ -35,13 +36,17 @@ function generateLastColumn(divRow, catchphrase, id, deleteUser) {
   lastRow.classList.add('table-rows-row', 'with-buttons', 'w-45');
   //Create the catchphrase column
   generateColums(catchphrase, lastRow, ['w-70']);
+
   //Create the update button
-  createButton(
+  const updateButton = createButton(
     ['w-15', 'align-end', 'small-button', 'success-color'],
     lastRow,
     id,
     'Update'
   );
+  //Add event listener to the button
+  updateButton.addEventListener('click', () => modal(id));
+
   //Create the delete button
   const deleteButton = createButton(
     ['w-15', 'align-end', 'small-button', 'alert-color'],

@@ -8,7 +8,7 @@ export async function getUsers() {
   return responseHandler(true, data.rows);
 }
 
-// GET A USER BY ID
+// GET A USER BY ID (UNUSED YET)
 export async function getUserByID(id) {
   //Convert the string id to a number
   let userId = Number(id);
