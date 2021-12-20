@@ -23,15 +23,6 @@ async function startApp() {
   );
 }
 
-async function deleteUser(id) {
-  const response = await fetchDelete(id);
-  const tableRows = document.querySelector('.table-rows');
-  //Create an animation to remove a row from the DOM when is deleted.
-  removeRowAnimation(id, tableRows);
-  //Create an alert to confirm user has been deleted
-  createAlert(response);
-}
-
 function updateFormObjectValues(e, key) {
   let value = '';
   //Easter Egg
@@ -46,25 +37,26 @@ function updateFormObjectValues(e, key) {
 
 //Get the first Name
 const firstName = document.querySelector('#first-name');
-firstName.addEventListener('keyup', (e) =>
-  updateFormObjectValues(e, 'first_name')
-);
+createEventListeners(firstName);
 
 //Get last name
 const lastName = document.querySelector('#last-name');
-lastName.addEventListener('keyup', (e) =>
-  updateFormObjectValues(e, 'last_name')
-);
+createEventListeners(lastName);
 
 //Get email
 const email = document.querySelector('#email');
-email.addEventListener('keyup', (e) => updateFormObjectValues(e, 'email'));
+createEventListeners(email);
 
 //Get catchphrase
 const catchphrase = document.querySelector('#catchphrase');
-catchphrase.addEventListener('keyup', (e) =>
-  updateFormObjectValues(e, 'catchphrase')
-);
+createEventListeners(catchphrase);
+
+//CREATE THE EVENT LISTENERS
+function createEventListeners(formInput) {
+  formInput.addEventListener('keyup', (e) =>
+    updateFormObjectValues(e, `'${formInput}'`)
+  );
+}
 
 //SEND FORM BUTTON
 const addNewUser = document.querySelector('#add-user-button');
@@ -77,5 +69,16 @@ let formOject = { first_name: '', last_name: '', email: '', catchphrase: '' };
 async function createUser() {
   const response = await fetchCreate(formOject);
   //Create an alert to confirm user has been deleted
-  createAlert(response, 'create');
+  console.log(response);
+  // createAlert(response, 'create');
+}
+
+//DELETE AN USER BY ID
+async function deleteUser(id) {
+  const response = await fetchDelete(id);
+  const tableRows = document.querySelector('.table-rows');
+  //Create an animation to remove a row from the DOM when is deleted.
+  removeRowAnimation(id, tableRows);
+  //Create an alert to confirm user has been deleted
+  createAlert(response);
 }

@@ -33,14 +33,18 @@ export async function createUser(newUser) {
     return responseHandler(false, errorMsgNoBody);
   }
 
+  const { first_name, last_name, email, catchphrase } = newUser;
+
   // Add the next id to the new object
-  const NewUserWithId = { id: generateID(), ...newUser };
   //Add the new user to the data
-  users.push(NewUserWithId);
-  //Find the new user in the array
-  const lastUserAdded = users[users.length - 1];
-  //Return the new created user for the response
-  return responseHandler(true, lastUserAdded);
+  const sqlQuery = `INSERT into users (first_name,last_name,email,catchphrase) VALUES ($1,$2,$3,$4) RETURNING *;`;
+  const data = await query(sqlQuery, [
+    first_name,
+    last_name,
+    email,
+    catchphrase,
+  ]);
+  return responseHandler(true, data.rows);
 }
 
 // UPDATE A USER BY ID
