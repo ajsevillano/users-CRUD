@@ -33,9 +33,9 @@ export async function createUser(newUser) {
     return responseHandler(false, errorMsgNoBody);
   }
 
+  //Destructuring the body
   const { first_name, last_name, email, catchphrase } = newUser;
 
-  // Add the next id to the new object
   //Add the new user to the data
   const sqlQuery = `INSERT into users (first_name,last_name,email,catchphrase) VALUES ($1,$2,$3,$4) RETURNING *;`;
   const data = await query(sqlQuery, [
@@ -76,17 +76,6 @@ export async function deleteUserByID(id) {
   const sqlQuery = `DELETE FROM users WHERE id=$1 RETURNING *;`;
   const data = await query(sqlQuery, [userId]);
   return responseHandler(true, data.rows);
-}
-
-//OTHER FUNCTIONS
-function generateID() {
-  // Find the last user on the array
-  const lastUser = users[users.length - 1];
-  // Get the last user Id
-  let lastUserId = lastUser.id;
-  // Generate the next number
-  let nextId = ++lastUserId;
-  return nextId;
 }
 
 function checkBodyObjIsEmpty(body) {
