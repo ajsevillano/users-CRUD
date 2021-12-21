@@ -1,4 +1,5 @@
 const modalBox = document.querySelector('.modal');
+const modalContent = document.querySelector('.modal-content');
 const modalContainer = document.querySelector('.modal-container');
 
 export default function modal(id) {
@@ -9,12 +10,13 @@ export default function modal(id) {
   //Create and h1 with the id inside
   const modalH1 = document.createElement('h1');
   modalH1.innerText = `Modal for the user with id ${id}`;
-  modalBox.appendChild(modalH1);
+  modalContent.appendChild(modalH1);
 
   //Create and button and an event listener to close the modal
   const closeButton = document.createElement('button');
+  closeButton.classList.add('add-to-list-button');
   closeButton.innerText = 'close';
-  modalBox.appendChild(closeButton);
+  modalContent.appendChild(closeButton);
   closeButton.addEventListener('click', () => closeModal(modalH1, closeButton));
 }
 
@@ -25,8 +27,8 @@ function closeModal(modalH1, closeButton) {
   modalContainer.classList.add('hidden');
 
   //Remove the previous h1 and button
-  modalBox.removeChild(modalH1);
-  modalBox.removeChild(closeButton);
+  modalContent.removeChild(modalH1);
+  modalContent.removeChild(closeButton);
   setTimeout(() => {
     modalBox.classList.remove('modal-animation-out');
   }, 1000);

@@ -26,6 +26,7 @@ body {
 .title {
   text-align: center;
   font-size: 3rem;
+  margin-top: 3rem;
 }
 
 .add-user-form-container {
@@ -59,13 +60,8 @@ label p {
   margin-bottom: 0.5rem;
 }
 
-h1 {
-  margin-top: 3rem;
-}
-
-.add-to-list-button {
+.align-self-end {
   align-self: end;
-  background-color: #3498db;
 }
 
 .add-to-list-button {
@@ -82,6 +78,7 @@ h1 {
   cursor: pointer;
   outline-color: #d4d4d4;
   border-radius: 5px;
+  background-color: #3498db;
 }
 
 .small-button {
@@ -259,11 +256,9 @@ svg {
 .modal {
   position: relative;
   background-color: white;
-  width: 30%;
-  height: 30vh;
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
+  width: 600px;
+  height: 400px;
+  display: flex;
   flex-direction: column;
   border-radius: 10px;
   top: 20px;
@@ -277,6 +272,24 @@ svg {
   -ms-transition: visibility 0.5s, opacity 0.5s;
   -o-transition: visibility 0.5s, opacity 0.5s;
   transition: visibility 0.5s, opacity 0.5s;
+}
+
+.modal-img {
+  height: 40%;
+  background-color: #c5ebf6;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-content {
+  height: 60%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 /* Modal animations (Move up when open, move down when close) */
