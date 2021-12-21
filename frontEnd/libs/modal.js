@@ -13,29 +13,57 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
   modalH1.innerText = `Update info for the user ${id}`;
   modalContent.appendChild(modalH1);
 
+  //Create labels for name input
+  const labelInputName = document.createElement('label');
+  labelInputName.innerText = 'Name:';
+  labelInputName.htmlFor = 'firstName';
+  modalContent.appendChild(labelInputName);
+
   //Create first name input
   const modalInputFirstName = document.createElement('input');
+  modalInputFirstName.setAttribute('id', 'firstName');
   modalInputFirstName.value = `${firstName}`;
   modalInputFirstName.type = 'text';
   modalInputFirstName.classList.add('input-modal');
   modalContent.appendChild(modalInputFirstName);
 
+  //Create label for last name input
+  const labelInputLastName = document.createElement('label');
+  labelInputLastName.innerText = 'Last Name:';
+  labelInputLastName.htmlFor = 'lastName';
+  modalContent.appendChild(labelInputLastName);
+
   //Create last name input
   const modalInputLastName = document.createElement('input');
+  modalInputLastName.setAttribute('id', 'lastName');
   modalInputLastName.value = `${lastName}`;
   modalInputLastName.type = 'text';
   modalInputLastName.classList.add('input-modal');
   modalContent.appendChild(modalInputLastName);
 
+  //Create label for email input
+  const labelInputEmail = document.createElement('label');
+  labelInputEmail.innerText = 'Email:';
+  labelInputEmail.htmlFor = 'lastName';
+  modalContent.appendChild(labelInputEmail);
+
   //Create email input
   const modalInputEmail = document.createElement('input');
+  modalInputLastName.setAttribute('id', 'email');
   modalInputEmail.value = `${email}`;
   modalInputEmail.type = 'text';
   modalInputEmail.classList.add('input-modal');
   modalContent.appendChild(modalInputEmail);
 
+  //Create label for catchPhrase input
+  const labelInputCatchphrase = document.createElement('label');
+  labelInputCatchphrase.innerText = 'catchphrase:';
+  labelInputCatchphrase.htmlFor = 'lastName';
+  modalContent.appendChild(labelInputCatchphrase);
+
   //Create catchPhrase input
   const modalInputCatchphrase = document.createElement('input');
+  modalInputLastName.setAttribute('id', 'catchphrase');
   modalInputCatchphrase.value = `${catchphrase}`;
   modalInputCatchphrase.type = 'text';
   modalInputCatchphrase.classList.add('input-modal');
@@ -53,7 +81,11 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
       modalInputFirstName,
       modalInputLastName,
       modalInputEmail,
-      modalInputCatchphrase
+      modalInputCatchphrase,
+      labelInputName,
+      labelInputLastName,
+      labelInputEmail,
+      labelInputCatchphrase
     )
   );
 }
@@ -64,7 +96,11 @@ function closeModal(
   modalInputFirstName,
   modalInputLastName,
   modalInputEmail,
-  modalInputCatchphrase
+  modalInputCatchphrase,
+  labelInputName,
+  labelInputLastName,
+  labelInputEmail,
+  labelInputCatchphrase
 ) {
   modalBox.classList.add('modal-animation-out');
   modalBox.classList.remove('modal-animation-in');
@@ -78,6 +114,10 @@ function closeModal(
   modalContent.removeChild(modalInputLastName);
   modalContent.removeChild(modalInputEmail);
   modalContent.removeChild(modalInputCatchphrase);
+  modalContent.removeChild(labelInputName);
+  modalContent.removeChild(labelInputLastName);
+  modalContent.removeChild(labelInputEmail);
+  modalContent.removeChild(labelInputCatchphrase);
 
   setTimeout(() => {
     modalBox.classList.remove('modal-animation-out');
