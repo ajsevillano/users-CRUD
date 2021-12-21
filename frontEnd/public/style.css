@@ -256,8 +256,8 @@ svg {
 .modal {
   position: relative;
   background-color: white;
-  width: 600px;
-  height: 400px;
+  width: 700px;
+  height: 500px;
   display: flex;
   flex-direction: row;
   border-radius: 10px;
@@ -294,6 +294,27 @@ svg {
 
 .modal h1 {
   font-size: 1.3rem;
+  margin: 1rem 0;
+}
+
+.modal label {
+  width: 78%;
+  font-weight: 800;
+}
+
+.button-modal {
+  width: 80%;
+  height: 3.4rem;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  outline-color: #d4d4d4;
+  border-radius: 5px;
+  background-color: #3498db;
+  margin: 1rem 0;
 }
 
 /* Modal animations (Move up when open, move down when close) */
@@ -309,12 +330,13 @@ svg {
 }
 
 .input-modal {
-  width: 70%;
+  width: 80%;
   border: 1px solid #e1e4e8;
   border-radius: 4px;
   outline: none;
   padding: 6px 6px 6px 14px;
   font-size: 1.2rem;
-  color: #0b2138;
+  color: #949494;
   border-radius: 4px;
+  margin: 0.3rem 0 1rem 0;
 }

@@ -15,7 +15,7 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
 
   //Create labels for name input
   const labelInputName = document.createElement('label');
-  labelInputName.innerText = 'Name:';
+  labelInputName.innerText = 'Name';
   labelInputName.htmlFor = 'firstName';
   modalContent.appendChild(labelInputName);
 
@@ -29,7 +29,7 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
 
   //Create label for last name input
   const labelInputLastName = document.createElement('label');
-  labelInputLastName.innerText = 'Last Name:';
+  labelInputLastName.innerText = 'Last Name';
   labelInputLastName.htmlFor = 'lastName';
   modalContent.appendChild(labelInputLastName);
 
@@ -43,7 +43,7 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
 
   //Create label for email input
   const labelInputEmail = document.createElement('label');
-  labelInputEmail.innerText = 'Email:';
+  labelInputEmail.innerText = 'Email';
   labelInputEmail.htmlFor = 'lastName';
   modalContent.appendChild(labelInputEmail);
 
@@ -57,7 +57,7 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
 
   //Create label for catchPhrase input
   const labelInputCatchphrase = document.createElement('label');
-  labelInputCatchphrase.innerText = 'catchphrase:';
+  labelInputCatchphrase.innerText = 'Catchphrase';
   labelInputCatchphrase.htmlFor = 'lastName';
   modalContent.appendChild(labelInputCatchphrase);
 
@@ -71,8 +71,8 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
 
   //Create and button and an event listener to close the modal
   const closeButton = document.createElement('button');
-  closeButton.classList.add('add-to-list-button');
-  closeButton.innerText = 'close';
+  closeButton.classList.add('button-modal');
+  closeButton.innerText = 'Update';
   modalContent.appendChild(closeButton);
   closeButton.addEventListener('click', () =>
     closeModal(
