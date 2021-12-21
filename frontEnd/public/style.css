@@ -36,7 +36,7 @@ body {
   justify-content: center;
 }
 
-input {
+/* input {
   width: 90%;
   border: 1px solid #e1e4e8;
   border-radius: 4px;
@@ -46,7 +46,7 @@ input {
   color: #0b2138;
   font-weight: 600;
   flex: 1;
-}
+} */
 
 input:focus {
   border-color: #3498db;
@@ -259,7 +259,7 @@ svg {
   width: 600px;
   height: 400px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-radius: 10px;
   top: 20px;
 }
@@ -275,21 +275,21 @@ svg {
 }
 
 .modal-img {
-  height: 40%;
+  width: 40%;
   background-color: #c5ebf6;
   border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .modal-content {
-  height: 60%;
+  width: 60%;
   background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 /* Modal animations (Move up when open, move down when close) */
@@ -302,4 +302,15 @@ svg {
 .modal-animation-out {
   transition: 0.5s;
   transform: translateY(0px);
+}
+
+.input-modal {
+  width: 70%;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  outline: none;
+  padding: 6px 6px 6px 14px;
+  font-size: 1.2rem;
+  color: #0b2138;
+  border-radius: 4px;
 }

@@ -27,10 +27,26 @@ export function generateTableRow(
   generateColums(email, divRow, ['w-25']);
 
   //Create the last row element  <div class="table-rows-row with-buttons w-50">
-  generateLastColumn(divRow, catchphrase, id, deleteUser);
+  generateLastColumn(
+    divRow,
+    catchphrase,
+    id,
+    deleteUser,
+    firstName,
+    lastName,
+    email
+  );
 }
 
-function generateLastColumn(divRow, catchphrase, id, deleteUser) {
+function generateLastColumn(
+  divRow,
+  catchphrase,
+  id,
+  deleteUser,
+  firstName,
+  lastName,
+  email
+) {
   const lastRow = document.createElement('div');
   //Create the last row element  <div class="table-rows-row with-buttons w-50">
   lastRow.classList.add('table-rows-row', 'with-buttons', 'w-45');
@@ -45,7 +61,9 @@ function generateLastColumn(divRow, catchphrase, id, deleteUser) {
     'Update'
   );
   //Add event listener to the button
-  updateButton.addEventListener('click', () => modal(id));
+  updateButton.addEventListener('click', () =>
+    modal(id, catchphrase, firstName, lastName, email)
+  );
 
   //Create the delete button
   const deleteButton = createButton(
