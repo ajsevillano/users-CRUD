@@ -292,6 +292,10 @@ svg {
   border-top-right-radius: 10px;
 }
 
+.modal h1 {
+  font-size: 1.3rem;
+}
+
 /* Modal animations (Move up when open, move down when close) */
 
 .modal-animation-in {
