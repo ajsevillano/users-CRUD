@@ -25,6 +25,20 @@ export async function fetchCreate(body) {
   return response;
 }
 
+//UPDATE AN USER
+export async function fetchUpdate(body) {
+  const fetchResponse = await fetch(`${url}`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  //Store the response.
+  const response = await fetchResponse.json();
+  return response;
+}
+
 //FETCH DELETE BY ID
 export async function fetchDelete(id) {
   //We send a DELETE fetch and wait for the response

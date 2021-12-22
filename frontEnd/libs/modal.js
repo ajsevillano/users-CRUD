@@ -1,4 +1,5 @@
 import { closeModal } from './modal/closeModal.js';
+import { fetchUpdate } from './fetch.js';
 
 const modalBox = document.querySelector('.modal');
 
@@ -9,7 +10,6 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
   const modalContent = document.createElement('div');
   modalContent.classList.add('modal-content');
   modalBox.appendChild(modalContent);
-
   modalContainer.classList.remove('hidden');
   modalContainer.classList.add('fadein');
   modalBox.classList.add('modal-animation-in');
@@ -81,5 +81,55 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
   closeButton.innerText = 'Update';
   modalContent.appendChild(closeButton);
   const closeModalParams = [modalBox, modalContent, modalContainer];
-  closeButton.addEventListener('click', () => closeModal(closeModalParams));
+
+  //PUT THE DEFAULT DATA INTO formOject (Formally body response)
+  let formOject = {
+    first_name: modalInputFirstName.value,
+    last_name: modalInputLastName.value,
+    email: modalInputEmail.value,
+    catchphrase: modalInputCatchphrase.value,
+  };
+
+  // closeButton.addEventListener('click', () => closeModal(closeModalParams)); TO MOVE FOR WHEN CLICK ON CLOSE BUTTON
+  closeButton.addEventListener('click', () => updateUser(formOject));
+
+  console.log(formOject);
+
+  //UPDATE THE USER
+  async function updateUser(formOject) {
+    const response = await fetchUpdate(formOject);
+    console.log(response);
+  }
+
+  function updateFormObjectValues(e, key) {
+    let value = '';
+    //Easter Egg
+    if (key === 'first_name' && e.target.value === 'Mireia') {
+      value = `👶 ${e.target.value}`;
+    } else {
+      value = e.target.value;
+    }
+    console.log(formOject);
+    return (formOject[key] = value);
+  }
+
+  //Get the first Name
+  modalInputFirstName.addEventListener('keyup', (e) =>
+    updateFormObjectValues(e, 'first_name')
+  );
+
+  //Get last name
+  modalInputLastName.addEventListener('keyup', (e) =>
+    updateFormObjectValues(e, 'last_name')
+  );
+
+  //Get email
+  modalInputEmail.addEventListener('keyup', (e) =>
+    updateFormObjectValues(e, 'email')
+  );
+
+  //Get catchphrase
+  modalInputCatchphrase.addEventListener('keyup', (e) =>
+    updateFormObjectValues(e, 'catchphrase')
+  );
 }

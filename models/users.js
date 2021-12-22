@@ -32,10 +32,8 @@ export async function createUser(newUser) {
     //Return the response for the error
     return responseHandler(false, errorMsgNoBody);
   }
-
   //Destructuring the body
   const { first_name, last_name, email, catchphrase } = newUser;
-
   //Add the new user to the data
   const sqlQuery = `INSERT into users (first_name,last_name,email,catchphrase) VALUES ($1,$2,$3,$4) RETURNING *;`;
   const data = await query(sqlQuery, [
@@ -56,16 +54,30 @@ export async function updateUserByID(id, updatedUser) {
     //Return the response for the error
     return responseHandler(false, errorMsgNoBody);
   }
+
   //Convert the string id to a number
   let userId = Number(id);
-  // Add the Id to the body (updateUser)
-  const UpdatedUserWithId = { id: userId, ...updatedUser };
-  //Find the position of the user by id
-  const foundItem = users.findIndex((user) => user.id === userId);
-  //Update the value of the item
-  users[foundItem] = UpdatedUserWithId;
-  //Return the payload if the update succeded
-  return responseHandler(true, users[foundItem]);
+  //Destructuring the body
+  const { first_name, last_name, email, catchphrase } = updatedUser;
+  //Add the new user to the data
+  const sqlQuery = `UPDATE users SET first_name = $1,last_name=$2,email=$3,catchphrase=$4 WHERE id=$5  RETURNING *;`;
+  const data = await query(sqlQuery, [
+    first_name,
+    last_name,
+    email,
+    catchphrase,
+    userId,
+  ]);
+  return responseHandler(true, data.rows);
+
+  // // Add the Id to the body (updateUser)
+  // const UpdatedUserWithId = { id: userId, ...updatedUser };
+  // //Find the position of the user by id
+  // const foundItem = users.findIndex((user) => user.id === userId);
+  // //Update the value of the item
+  // users[foundItem] = UpdatedUserWithId;
+  // //Return the payload if the update succeded
+  // return responseHandler(true, users[foundItem]);
 }
 
 // DELETE A USER BY ID
