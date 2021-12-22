@@ -69,15 +69,6 @@ export async function updateUserByID(id, updatedUser) {
     userId,
   ]);
   return responseHandler(true, data.rows);
-
-  // // Add the Id to the body (updateUser)
-  // const UpdatedUserWithId = { id: userId, ...updatedUser };
-  // //Find the position of the user by id
-  // const foundItem = users.findIndex((user) => user.id === userId);
-  // //Update the value of the item
-  // users[foundItem] = UpdatedUserWithId;
-  // //Return the payload if the update succeded
-  // return responseHandler(true, users[foundItem]);
 }
 
 // DELETE A USER BY ID

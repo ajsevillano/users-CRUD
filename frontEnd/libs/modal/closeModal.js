@@ -13,4 +13,7 @@ export function closeModal(closeModalParams) {
     //REMOVE THE MODAL CONTENT DIV
     modalBox.removeChild(modalContent);
   }, 1000);
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
 }

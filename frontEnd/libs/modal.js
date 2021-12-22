@@ -2,12 +2,12 @@ import { closeModal } from './modal/closeModal.js';
 import { fetchUpdate } from './fetch.js';
 
 const modalBox = document.querySelector('.modal');
-
+const modalContent = document.createElement('div');
 const modalContainer = document.querySelector('.modal-container');
 
 export default function modal(id, catchphrase, firstName, lastName, email) {
   //Create the modal content:
-  const modalContent = document.createElement('div');
+
   modalContent.classList.add('modal-content');
   modalBox.appendChild(modalContent);
   modalContainer.classList.remove('hidden');
@@ -80,7 +80,6 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
   closeButton.classList.add('button-modal');
   closeButton.innerText = 'Update';
   modalContent.appendChild(closeButton);
-  const closeModalParams = [modalBox, modalContent, modalContainer];
 
   //PUT THE DEFAULT DATA INTO formOject (Formally body response)
   let formOject = {
@@ -91,15 +90,7 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
   };
 
   // closeButton.addEventListener('click', () => closeModal(closeModalParams)); TO MOVE FOR WHEN CLICK ON CLOSE BUTTON
-  closeButton.addEventListener('click', () => updateUser(formOject));
-
-  console.log(formOject);
-
-  //UPDATE THE USER
-  async function updateUser(formOject) {
-    const response = await fetchUpdate(formOject);
-    console.log(response);
-  }
+  closeButton.addEventListener('click', () => updateUser(id, formOject));
 
   function updateFormObjectValues(e, key) {
     let value = '';
@@ -109,7 +100,6 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
     } else {
       value = e.target.value;
     }
-    console.log(formOject);
     return (formOject[key] = value);
   }
 
@@ -132,4 +122,32 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
   modalInputCatchphrase.addEventListener('keyup', (e) =>
     updateFormObjectValues(e, 'catchphrase')
   );
+
+  //UPDATE THE USER
+  async function updateUser(id, formOject) {
+    const response = await fetchUpdate(id, formOject);
+    destroyModalContent();
+    generateSuccesModalContent();
+    return response;
+  }
+}
+
+//DESTROY THE CONTENT INSIDE MODAL AND REGENERATE A NEW DIV
+function destroyModalContent() {
+  modalBox.removeChild(modalContent);
+}
+
+function generateSuccesModalContent() {
+  const modalContentSuccess = document.createElement('div');
+  modalContentSuccess.classList.add('modal-content');
+  modalBox.appendChild(modalContentSuccess);
+  const successMsg = document.createElement('h2');
+  successMsg.innerText = 'User updated, Hurray!';
+  modalContentSuccess.appendChild(successMsg);
+  const closeButton = document.createElement('button');
+  const closeModalParams = [modalBox, modalContentSuccess, modalContainer];
+  closeButton.addEventListener('click', () => closeModal(closeModalParams));
+  closeButton.classList.add('button-modal');
+  closeButton.innerText = 'Close modal';
+  modalContentSuccess.appendChild(closeButton);
 }
