@@ -36,17 +36,20 @@ body {
   justify-content: center;
 }
 
-/* input {
+.input-add-new-user {
   width: 90%;
   border: 1px solid #e1e4e8;
   border-radius: 4px;
   outline: none;
-  padding: 8px 8px 8px 16px;
-  font-size: 1.8rem;
+  padding: 6px 6px 6px 14px;
+  font-size: 1.4rem;
   color: #0b2138;
   font-weight: 600;
-  flex: 1;
-} */
+}
+
+.input-add-new-user {
+  flex: 1 1 0px;
+}
 
 input:focus {
   border-color: #3498db;
@@ -300,6 +303,7 @@ svg {
 .modal label {
   width: 78%;
   font-weight: 800;
+  margin-bottom: 0.2rem;
 }
 
 .button-modal {

@@ -1,9 +1,15 @@
+import { closeModal } from './modal/closeModal.js';
+
 const modalBox = document.querySelector('.modal');
-const modalContent = document.querySelector('.modal-content');
+
 const modalContainer = document.querySelector('.modal-container');
 
 export default function modal(id, catchphrase, firstName, lastName, email) {
-  console.log(id, catchphrase, firstName, lastName, email);
+  //Create the modal content:
+  const modalContent = document.createElement('div');
+  modalContent.classList.add('modal-content');
+  modalBox.appendChild(modalContent);
+
   modalContainer.classList.remove('hidden');
   modalContainer.classList.add('fadein');
   modalBox.classList.add('modal-animation-in');
@@ -74,52 +80,6 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
   closeButton.classList.add('button-modal');
   closeButton.innerText = 'Update';
   modalContent.appendChild(closeButton);
-  closeButton.addEventListener('click', () =>
-    closeModal(
-      modalH1,
-      closeButton,
-      modalInputFirstName,
-      modalInputLastName,
-      modalInputEmail,
-      modalInputCatchphrase,
-      labelInputName,
-      labelInputLastName,
-      labelInputEmail,
-      labelInputCatchphrase
-    )
-  );
-}
-
-function closeModal(
-  modalH1,
-  closeButton,
-  modalInputFirstName,
-  modalInputLastName,
-  modalInputEmail,
-  modalInputCatchphrase,
-  labelInputName,
-  labelInputLastName,
-  labelInputEmail,
-  labelInputCatchphrase
-) {
-  modalBox.classList.add('modal-animation-out');
-  modalBox.classList.remove('modal-animation-in');
-  modalContainer.classList.remove('fadein');
-  modalContainer.classList.add('hidden');
-
-  //Remove the previous h1 and button
-  modalContent.removeChild(modalH1);
-  modalContent.removeChild(closeButton);
-  modalContent.removeChild(modalInputFirstName);
-  modalContent.removeChild(modalInputLastName);
-  modalContent.removeChild(modalInputEmail);
-  modalContent.removeChild(modalInputCatchphrase);
-  modalContent.removeChild(labelInputName);
-  modalContent.removeChild(labelInputLastName);
-  modalContent.removeChild(labelInputEmail);
-  modalContent.removeChild(labelInputCatchphrase);
-
-  setTimeout(() => {
-    modalBox.classList.remove('modal-animation-out');
-  }, 1000);
+  const closeModalParams = [modalBox, modalContent, modalContainer];
+  closeButton.addEventListener('click', () => closeModal(closeModalParams));
 }
