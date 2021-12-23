@@ -27,6 +27,7 @@ export async function fetchCreate(body) {
 
 //UPDATE AN USER
 export async function fetchUpdate(id, body) {
+  console.log(body);
   const fetchResponse = await fetch(`${url}${id}`, {
     method: 'PUT',
     body: JSON.stringify(body),

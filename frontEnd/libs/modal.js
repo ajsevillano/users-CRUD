@@ -4,9 +4,16 @@ import { fetchUpdate } from './fetch.js';
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
 const modalContainer = document.querySelector('.modal-container');
+let UpdateBody = {};
 
-//CREATE THE MODAL CONTENT WHEN MODAL IS OPEN
-function createModalContent() {
+export default function modal(id, catchphrase, firstName, lastName, email) {
+  createModalContentDiv();
+  activateDarkBackground();
+  createFormItems(id, catchphrase, firstName, lastName, email);
+}
+
+//CREATE THE MODAL CONTENT
+function createModalContentDiv() {
   modalContent.classList.add('modal-content');
   modalBox.appendChild(modalContent);
 }
@@ -19,18 +26,16 @@ function activateDarkBackground() {
   modalBox.classList.add('modal-animation-in');
 }
 
-let UpdateBody = {};
-
 //CREATE THE MODAL FORM
-function createModalForm(id, catchphrase, firstName, lastName, email) {
+function createFormItems(id, catchphrase, firstName, lastName, email) {
   const modalInputNodes = [
-    { id: 'firstName', value: firstName, label: 'Name' },
-    { id: 'lastName', value: lastName, label: 'Last name' },
+    { id: 'first_name', value: firstName, label: 'Name' },
+    { id: 'last_name', value: lastName, label: 'Last name' },
     { id: 'email', value: email, label: 'Email' },
     { id: 'catchphrase', value: catchphrase, label: 'Catchphrase' },
   ];
   createH1Title(id);
-  const inputsAndLabels = modalInputNodes.map((inputElement) => {
+  modalInputNodes.map((inputElement) => {
     createInputsLabels(inputElement.id, inputElement.label);
     const input = document.createElement('input');
     input.setAttribute('id', inputElement.id);
@@ -45,33 +50,14 @@ function createModalForm(id, catchphrase, firstName, lastName, email) {
   });
 
   //CREATE THE UPDATE BUTTON
-  createUpdateButton();
-  return inputsAndLabels;
+  createUpdateButton(id);
 }
-
-// let formOject = {
-//   first_name: firstName.value,
-//   last_name: lastName.value,
-//   email: email.value,
-//   catchphrase: catchphrase.value,
-// };
 
 //UPDATE BODY VALUES OBJECT WHEN INPUT CHANGES
 function consolelog(e, key) {
   let value = e.target.value;
   return (UpdateBody[key] = value);
 }
-
-// function updateFormObjectValues(e, key) {
-//   let value = '';
-//   //Easter Egg
-//   if (key === 'first_name' && e.target.value === 'Mireia') {
-//     value = `👶 ${e.target.value}`;
-//   } else {
-//     value = e.target.value;
-//   }
-//   return (formOject[key] = value);
-// }
 
 //CREATE THE H1 TITLE
 function createH1Title(id) {
@@ -90,84 +76,38 @@ function createInputsLabels(id, label) {
 }
 
 //CREATE THE UPDATE BUTTON
-function createUpdateButton() {
+function createUpdateButton(id) {
   const closeButton = document.createElement('button');
   closeButton.classList.add('button-modal');
   closeButton.innerText = 'Update';
   modalContent.appendChild(closeButton);
-  closeButton.addEventListener('click', () => updateUser(id, formOject));
+  closeButton.addEventListener('click', () => updateUser(id, UpdateBody));
 }
 
 //UPDATE THE USER
-async function updateUser(id, formOject) {
-  const response = await fetchUpdate(id, formOject);
+async function updateUser(id, UpdateBody) {
+  const response = await fetchUpdate(id, UpdateBody);
   destroyModalContent();
   generateSuccesModalContent();
   return response;
 }
 
-export default function modal(id, catchphrase, firstName, lastName, email) {
-  createModalContent();
-  activateDarkBackground();
-  createModalForm(id, catchphrase, firstName, lastName, email);
-
-  //PUT THE DEFAULT DATA INTO formOject (Formally body response)
-  // let formOject = {
-  //   first_name: firstName.value,
-  //   last_name: lastName.value,
-  //   email: email.value,
-  //   catchphrase: catchphrase.value,
-  // };
-
-  // // closeButton.addEventListener('click', () => closeModal(closeModalParams)); TO MOVE FOR WHEN CLICK ON CLOSE BUTTON
-  // // closeButton.addEventListener('click', () => updateUser(id, formOject));
-
-  // function updateFormObjectValues(e, key) {
-  //   let value = '';
-  //   //Easter Egg
-  //   if (key === 'first_name' && e.target.value === 'Mireia') {
-  //     value = `👶 ${e.target.value}`;
-  //   } else {
-  //     value = e.target.value;
-  //   }
-  //   return (formOject[key] = value);
-  // }
-
-  // //Get the first Name
-  // firstName.addEventListener('keyup', (e) =>
-  //   updateFormObjectValues(e, 'first_name')
-  // );
-
-  // //Get last name
-  // lastName.addEventListener('keyup', (e) =>
-  //   updateFormObjectValues(e, 'last_name')
-  // );
-
-  // //Get email
-  // email.addEventListener('keyup', (e) => updateFormObjectValues(e, 'email'));
-
-  // //Get catchphrase
-  // catchphrase.addEventListener('keyup', (e) =>
-  //   updateFormObjectValues(e, 'catchphrase')
-  // );
+//DESTROY THE CONTENT INSIDE MODAL AND REGENERATE A NEW DIV
+function destroyModalContent() {
+  modalBox.removeChild(modalContent);
 }
 
-// //DESTROY THE CONTENT INSIDE MODAL AND REGENERATE A NEW DIV
-// function destroyModalContent() {
-//   modalBox.removeChild(modalContent);
-// }
-
-// function generateSuccesModalContent() {
-//   const modalContentSuccess = document.createElement('div');
-//   modalContentSuccess.classList.add('modal-content');
-//   modalBox.appendChild(modalContentSuccess);
-//   const successMsg = document.createElement('h2');
-//   successMsg.innerText = 'User updated, Hurray!';
-//   modalContentSuccess.appendChild(successMsg);
-//   const closeButton = document.createElement('button');
-//   const closeModalParams = [modalBox, modalContentSuccess, modalContainer];
-//   closeButton.addEventListener('click', () => closeModal(closeModalParams));
-//   closeButton.classList.add('button-modal');
-//   closeButton.innerText = 'Close modal';
-//   modalContentSuccess.appendChild(closeButton);
-// }
+function generateSuccesModalContent() {
+  const modalContentSuccess = document.createElement('div');
+  modalContentSuccess.classList.add('modal-content');
+  modalBox.appendChild(modalContentSuccess);
+  const successMsg = document.createElement('h2');
+  successMsg.innerText = 'User updated, Hurray!';
+  modalContentSuccess.appendChild(successMsg);
+  const closeButton = document.createElement('button');
+  const closeModalParams = [modalBox, modalContentSuccess, modalContainer];
+  closeButton.addEventListener('click', () => closeModal(closeModalParams));
+  closeButton.classList.add('button-modal');
+  closeButton.innerText = 'Close modal';
+  modalContentSuccess.appendChild(closeButton);
+}
