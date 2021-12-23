@@ -1,5 +1,4 @@
-import { closeModal } from './modal/closeModal.js';
-import { fetchUpdate } from './fetch.js';
+import { fetchUpdate } from '../fetch.js';
 
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
@@ -35,6 +34,13 @@ function createFormItems(id, catchphrase, firstName, lastName, email) {
     { id: 'catchphrase', value: catchphrase, label: 'Catchphrase' },
   ];
   createH1Title(id);
+  createInputs(modalInputNodes);
+  createUpdateButton(id);
+}
+
+//CREATE THE INPUTS
+function createInputs(modalInputNodes) {
+  //CREATE THE INPUTS ELEMENTS
   modalInputNodes.map((inputElement) => {
     createInputsLabels(inputElement.id, inputElement.label);
     const input = document.createElement('input');
@@ -48,9 +54,6 @@ function createFormItems(id, catchphrase, firstName, lastName, email) {
     //ADD EVENT LISTENER TO EVERY INPUT
     input.addEventListener('keyup', (e) => consolelog(e, inputElement.id));
   });
-
-  //CREATE THE UPDATE BUTTON
-  createUpdateButton(id);
 }
 
 //UPDATE BODY VALUES OBJECT WHEN INPUT CHANGES
@@ -110,4 +113,24 @@ function generateSuccesModalContent() {
   closeButton.classList.add('button-modal');
   closeButton.innerText = 'Close modal';
   modalContentSuccess.appendChild(closeButton);
+}
+
+function closeModal(closeModalParams) {
+  //Destructuring the params
+  const [modalBox, modalContent, modalContainer] = closeModalParams;
+
+  //CLOSE THE MODAL AND SHOW ANIMATION
+  modalBox.classList.add('modal-animation-out');
+  modalBox.classList.remove('modal-animation-in');
+  modalContainer.classList.remove('fadein');
+  modalContainer.classList.add('hidden');
+
+  setTimeout(() => {
+    modalBox.classList.remove('modal-animation-out');
+    //REMOVE THE MODAL CONTENT DIV
+    modalBox.removeChild(modalContent);
+  }, 1000);
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
 }

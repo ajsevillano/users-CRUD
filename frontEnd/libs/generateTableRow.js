@@ -1,5 +1,5 @@
 import { createButton } from '../createButtons.js';
-import modal from '../modal.js';
+import modal from '../modal/index.js';
 
 const tableRows = document.querySelector('.table-rows');
 
