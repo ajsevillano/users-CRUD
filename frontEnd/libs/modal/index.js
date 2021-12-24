@@ -1,4 +1,5 @@
 import { fetchUpdate } from '../fetch.js';
+import createInputElement from '../input/index.js';
 
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
@@ -34,20 +35,16 @@ function createFormItems(id, catchphrase, firstName, lastName, email) {
     { id: 'catchphrase', value: catchphrase, label: 'Catchphrase' },
   ];
   createH1Title(id);
-  createInputs(modalInputNodes);
+  createFormInputs(modalInputNodes);
   createUpdateButton(id);
 }
 
 //CREATE THE INPUTS
-function createInputs(modalInputNodes) {
+function createFormInputs(modalInputNodes) {
   //CREATE THE INPUTS ELEMENTS
   modalInputNodes.map((inputElement) => {
     createInputsLabels(inputElement.id, inputElement.label);
-    const input = document.createElement('input');
-    input.setAttribute('id', inputElement.id);
-    input.classList.add('input-modal');
-    input.value = inputElement.value;
-    input.type = 'text';
+    const input = createInputElement(inputElement.id, inputElement.value);
     modalContent.appendChild(input);
     //WHEN CREATE THE INPUTS, WE FILL THE UPDATE BODY OBJECT WITH THE CURRENT INPUTS INFORMATION
     UpdateBody = { ...UpdateBody, [inputElement.id]: inputElement.value };
