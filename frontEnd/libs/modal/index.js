@@ -1,5 +1,5 @@
 import { fetchUpdate } from '../fetch.js';
-import createInputElement from '../input/index.js';
+import createInputElement from '../input/input.js';
 
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
