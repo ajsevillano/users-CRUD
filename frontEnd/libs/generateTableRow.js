@@ -1,4 +1,4 @@
-import { createButton } from '../createButtons.js';
+import { button } from '../button.js';
 import modal from '../modal/index.js';
 
 const tableRows = document.querySelector('.table-rows');
@@ -54,7 +54,7 @@ function generateLastColumn(
   generateColums(catchphrase, lastRow, ['w-70']);
 
   //Create the update button
-  const updateButton = createButton(
+  const updateButton = button(
     ['w-15', 'align-end', 'small-button', 'success-color'],
     lastRow,
     id,
@@ -66,7 +66,7 @@ function generateLastColumn(
   );
 
   //Create the delete button
-  const deleteButton = createButton(
+  const deleteButton = button(
     ['w-15', 'align-end', 'small-button', 'alert-color'],
     lastRow,
     id,
