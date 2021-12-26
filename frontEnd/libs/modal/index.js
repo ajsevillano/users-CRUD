@@ -1,6 +1,8 @@
 import { fetchUpdate } from '../fetch.js';
 import createInputElement from '../input/input.js';
 import closeModal from '../modal/close.js';
+import generateSuccesModalContent from '../modal/succesContent.js';
+import { destroyModalContent } from '../others.js';
 
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
@@ -101,27 +103,8 @@ function createInputsLabels(id, label) {
 //UPDATE THE USER
 async function updateUser(id, UpdateBody) {
   const response = await fetchUpdate(id, UpdateBody);
-  destroyModalContent();
-  generateSuccesModalContent();
+  destroyModalContent(modalBox, modalContent);
+  //Create a new modal content with a success msg.
+  generateSuccesModalContent(modalBox, modalContainer);
   return response;
-}
-
-//DESTROY THE CONTENT INSIDE MODAL AND REGENERATE A NEW DIV
-function destroyModalContent() {
-  modalBox.removeChild(modalContent);
-}
-
-function generateSuccesModalContent() {
-  const modalContentSuccess = document.createElement('div');
-  modalContentSuccess.classList.add('modal-content');
-  modalBox.appendChild(modalContentSuccess);
-  const successMsg = document.createElement('h2');
-  successMsg.innerText = 'User updated, Hurray!';
-  modalContentSuccess.appendChild(successMsg);
-  const closeButton = document.createElement('button');
-  const closeModalParams = [modalBox, modalContentSuccess, modalContainer];
-  closeButton.addEventListener('click', () => closeModal(closeModalParams));
-  closeButton.classList.add('button-modal');
-  closeButton.innerText = 'Close modal';
-  modalContentSuccess.appendChild(closeButton);
 }
