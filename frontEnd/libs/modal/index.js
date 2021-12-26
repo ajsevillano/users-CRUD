@@ -21,8 +21,24 @@ function createModalContentDiv() {
 }
 
 //CREATE THE BUTTON CONTAINER AND BUTTONS
-function createButtons() {
+function createButtons(id) {
+  buttonsContainer.classList.add('modal-buttons-container');
   modalContent.appendChild(buttonsContainer);
+  //Cancel button
+  const buttonCancel = document.createElement('button');
+  buttonCancel.classList.add('modal-buttons', 'cancel');
+  buttonCancel.innerText = 'Cancel';
+  //Update button
+  const buttonUpdate = document.createElement('button');
+  buttonUpdate.classList.add('modal-buttons', 'confirm');
+  buttonUpdate.innerText = 'Update';
+  //Append buttons
+  buttonsContainer.appendChild(buttonCancel);
+  buttonsContainer.appendChild(buttonUpdate);
+  const closeModalParams = [modalBox, modalContent, modalContainer];
+  //Event Listeners
+  buttonUpdate.addEventListener('click', () => updateUser(id, UpdateBody));
+  buttonCancel.addEventListener('click', () => closeModal(closeModalParams));
 }
 
 //ACTIVATE THE DARK BACKGROUND WHEN MODAL IS OPEN
@@ -43,8 +59,7 @@ function createFormItems(id, catchphrase, firstName, lastName, email) {
   ];
   createH1Title(id);
   createFormInputs(modalInputNodes);
-  createButtons();
-  createUpdateButton(id);
+  createButtons(id);
 }
 
 //CREATE THE INPUTS
@@ -81,15 +96,6 @@ function createInputsLabels(id, label) {
   labelInputName.innerText = label;
   labelInputName.htmlFor = id;
   modalContent.appendChild(labelInputName);
-}
-
-//CREATE THE UPDATE BUTTON
-function createUpdateButton(id) {
-  const closeButton = document.createElement('button');
-  closeButton.classList.add('button-modal');
-  closeButton.innerText = 'Update';
-  modalContent.appendChild(closeButton);
-  closeButton.addEventListener('click', () => updateUser(id, UpdateBody));
 }
 
 //UPDATE THE USER

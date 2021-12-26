@@ -344,3 +344,30 @@ svg {
   border-radius: 4px;
   margin: 0.3rem 0 1rem 0;
 }
+
+.modal-buttons-container {
+  display: flex;
+  width: 80%;
+  margin: 1rem 0;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-buttons {
+  width: 48%;
+  border: none;
+  color: white;
+  height: 3.4rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm {
+  background-color: #3498db;
+}
+
+.cancel {
+  background-color: rgb(180, 180, 180);
+}
