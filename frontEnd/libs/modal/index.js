@@ -1,5 +1,6 @@
 import { fetchUpdate } from '../fetch.js';
 import createInputElement from '../input/input.js';
+import closeModal from '../modal/close.js';
 
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
@@ -110,24 +111,4 @@ function generateSuccesModalContent() {
   closeButton.classList.add('button-modal');
   closeButton.innerText = 'Close modal';
   modalContentSuccess.appendChild(closeButton);
-}
-
-function closeModal(closeModalParams) {
-  //Destructuring the params
-  const [modalBox, modalContent, modalContainer] = closeModalParams;
-
-  //CLOSE THE MODAL AND SHOW ANIMATION
-  modalBox.classList.add('modal-animation-out');
-  modalBox.classList.remove('modal-animation-in');
-  modalContainer.classList.remove('fadein');
-  modalContainer.classList.add('hidden');
-
-  setTimeout(() => {
-    modalBox.classList.remove('modal-animation-out');
-    //REMOVE THE MODAL CONTENT DIV
-    modalBox.removeChild(modalContent);
-  }, 1000);
-  setTimeout(() => {
-    location.reload();
-  }, 1000);
 }
