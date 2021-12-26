@@ -2,7 +2,7 @@ import { fetchUpdate } from '../fetch.js';
 import createInputElement from '../input/input.js';
 import closeModal from '../modal/close.js';
 import generateSuccesModalContent from '../modal/succesContent.js';
-import { destroyModalContent } from '../others.js';
+import { destroyContentDiv, createContentDiv } from '../others.js';
 
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
@@ -11,36 +11,9 @@ const modalContainer = document.querySelector('.modal-container');
 let UpdateBody = {};
 
 export default function modal(id, catchphrase, firstName, lastName, email) {
-  createModalContentDiv();
+  createContentDiv(modalBox, modalContent);
   activateDarkBackground();
   createFormItems(id, catchphrase, firstName, lastName, email);
-}
-
-//CREATE THE MODAL CONTENT
-function createModalContentDiv() {
-  modalContent.classList.add('modal-content');
-  modalBox.appendChild(modalContent);
-}
-
-//CREATE THE BUTTON CONTAINER AND BUTTONS
-function createButtons(id) {
-  buttonsContainer.classList.add('modal-buttons-container');
-  modalContent.appendChild(buttonsContainer);
-  //Cancel button
-  const buttonCancel = document.createElement('button');
-  buttonCancel.classList.add('modal-buttons', 'cancel');
-  buttonCancel.innerText = 'Cancel';
-  //Update button
-  const buttonUpdate = document.createElement('button');
-  buttonUpdate.classList.add('modal-buttons', 'confirm');
-  buttonUpdate.innerText = 'Update';
-  //Append buttons
-  buttonsContainer.appendChild(buttonCancel);
-  buttonsContainer.appendChild(buttonUpdate);
-  const closeModalParams = [modalBox, modalContent, modalContainer];
-  //Event Listeners
-  buttonUpdate.addEventListener('click', () => updateUser(id, UpdateBody));
-  buttonCancel.addEventListener('click', () => closeModal(closeModalParams));
 }
 
 //ACTIVATE THE DARK BACKGROUND WHEN MODAL IS OPEN
@@ -51,7 +24,7 @@ function activateDarkBackground() {
   modalBox.classList.add('modal-animation-in');
 }
 
-//CREATE THE MODAL FORM
+//CREATE THE UPDATE FORM ITEMS
 function createFormItems(id, catchphrase, firstName, lastName, email) {
   const modalInputNodes = [
     { id: 'first_name', value: firstName, label: 'Name' },
@@ -100,10 +73,31 @@ function createInputsLabels(id, label) {
   modalContent.appendChild(labelInputName);
 }
 
+//CREATE THE BUTTON CONTAINER AND BUTTONS
+function createButtons(id) {
+  buttonsContainer.classList.add('modal-buttons-container');
+  modalContent.appendChild(buttonsContainer);
+  //Cancel button
+  const buttonCancel = document.createElement('button');
+  buttonCancel.classList.add('modal-buttons', 'cancel');
+  buttonCancel.innerText = 'Cancel';
+  //Update button
+  const buttonUpdate = document.createElement('button');
+  buttonUpdate.classList.add('modal-buttons', 'confirm');
+  buttonUpdate.innerText = 'Update';
+  //Append buttons
+  buttonsContainer.appendChild(buttonCancel);
+  buttonsContainer.appendChild(buttonUpdate);
+  const closeModalParams = [modalBox, modalContent, modalContainer];
+  //Event Listeners
+  buttonUpdate.addEventListener('click', () => updateUser(id, UpdateBody));
+  buttonCancel.addEventListener('click', () => closeModal(closeModalParams));
+}
+
 //UPDATE THE USER
 async function updateUser(id, UpdateBody) {
   const response = await fetchUpdate(id, UpdateBody);
-  destroyModalContent(modalBox, modalContent);
+  destroyContentDiv(modalBox, modalContent);
   //Create a new modal content with a success msg.
   generateSuccesModalContent(modalBox, modalContainer);
   return response;
