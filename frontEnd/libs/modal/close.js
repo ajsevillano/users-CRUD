@@ -1,4 +1,4 @@
-import { destroyModalContent } from '../others.js';
+import { destroyContentDiv } from '../others.js';
 
 export default function closeModal(closeModalParams) {
   //Destructuring the params
@@ -13,7 +13,7 @@ export default function closeModal(closeModalParams) {
   setTimeout(() => {
     modalBox.classList.remove('modal-animation-out');
     //REMOVE THE MODAL CONTENT DIV
-    destroyModalContent(modalBox, modalContent);
+    destroyContentDiv(modalBox, modalContent);
   }, 1000);
   setTimeout(() => {
     location.reload();
