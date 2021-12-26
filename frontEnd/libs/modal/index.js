@@ -4,6 +4,7 @@ import closeModal from '../modal/close.js';
 
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
+const buttonsContainer = document.createElement('div');
 const modalContainer = document.querySelector('.modal-container');
 let UpdateBody = {};
 
@@ -17,6 +18,11 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
 function createModalContentDiv() {
   modalContent.classList.add('modal-content');
   modalBox.appendChild(modalContent);
+}
+
+//CREATE THE BUTTON CONTAINER AND BUTTONS
+function createButtons() {
+  modalContent.appendChild(buttonsContainer);
 }
 
 //ACTIVATE THE DARK BACKGROUND WHEN MODAL IS OPEN
@@ -37,6 +43,7 @@ function createFormItems(id, catchphrase, firstName, lastName, email) {
   ];
   createH1Title(id);
   createFormInputs(modalInputNodes);
+  createButtons();
   createUpdateButton(id);
 }
 
