@@ -19,7 +19,7 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
   );
 }
 
-//CREATE THE MODAL CONTENT DIV
+//CREATE THE DIV THAT CONTAINS THE MODAL CONTENT
 function createContentDiv() {
   modalContent.classList.add('modal-content');
   modalBox.appendChild(modalContent);

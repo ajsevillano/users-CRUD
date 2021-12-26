@@ -3,6 +3,7 @@ import closeModal from './close.js';
 import { destroyContentDiv } from '../others.js';
 import { fetchUpdate } from '../fetch.js';
 import generateSuccesModalContent from './succesContent.js';
+import { button } from '../button.js';
 
 let UpdateBody = {};
 const buttonsContainer = document.createElement('div');
@@ -70,13 +71,21 @@ function createButtons(id, modalContent, modalBox, modalContainer) {
   buttonsContainer.classList.add('modal-buttons-container');
   modalContent.appendChild(buttonsContainer);
   //Cancel button
-  const buttonCancel = document.createElement('button');
-  buttonCancel.classList.add('modal-buttons', 'cancel');
-  buttonCancel.innerText = 'Cancel';
+  const buttonCancel = button(
+    ['modal-buttons', 'cancel'],
+    buttonsContainer,
+    'cancel-button',
+    'Cancel'
+  );
+
   //Update button
-  const buttonUpdate = document.createElement('button');
-  buttonUpdate.classList.add('modal-buttons', 'confirm');
-  buttonUpdate.innerText = 'Update';
+  const buttonUpdate = button(
+    ['modal-buttons', 'confirm'],
+    buttonsContainer,
+    'update-button',
+    'Update'
+  );
+
   //Append buttons
   buttonsContainer.appendChild(buttonCancel);
   buttonsContainer.appendChild(buttonUpdate);

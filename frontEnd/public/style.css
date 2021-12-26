@@ -96,6 +96,7 @@ label p {
   font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
+  border: none;
 }
 
 .success-color {
