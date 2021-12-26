@@ -10,23 +10,24 @@
     <div class="container">
       <h1 class="title">User list</h1>
       <div class="add-user-form-container">
-        <label class="label-add-new-user-input">
-          <p>First Name</p>
+        <div class="form-group">
+        <label class="label-add-new-user-input">First Name</label>
           <input class="input-add-new-user" id="first-name" />
-        </label>
-        <label  class="label-add-new-user-input" >
-          <p>Last name</p>
+        </div>
+        <div class="form-group">
+        <label  class="label-add-new-user-input" >Last Name </label>
           <input class="input-add-new-user" id="last-name" />
-        </label>
-        <label  class="label-add-new-user-input">
-          <p>Email</p>
+        </div>
+        <div class="form-group">
+        <label  class="label-add-new-user-input">Email</label>
           <input class="input-add-new-user" id="email" />
-        </label>
-        <label  class="label-add-new-user-input">
-          <p>Catchphrase</p>
+      </div>
+      <div class="form-group">
+        <label  class="label-add-new-user-input">Catchphrase</label>
           <input class="input-add-new-user" id="catchphrase" />
-        </label>
-        <button id="add-user-button" class="add-to-list-button align-self-end">
+      </div>
+      <div class="add-user-button-container">
+        <button id="add-user-button" class="add-user-button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="icon icon-tabler icon-tabler-circle-plus"
@@ -45,6 +46,7 @@
             <line x1="12" y1="9" x2="12" y2="15" /></svg
           >Add new user
         </button>
+      </div>
       </div>
       <div class="users-table-container">
         <div class="table-header">

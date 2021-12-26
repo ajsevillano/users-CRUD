@@ -6,8 +6,8 @@ export function createAlert(response, msg) {
   //Destructure the response
   const { first_name, last_name } = response.payload[0];
   //Define the messages to be shown
-  const msgCreated = `User ${first_name} ${last_name} has been created 🎉`;
-  const msgDeleted = `User ${first_name} ${last_name} has been deleted 🗑️`;
+  const msgCreated = `🎉 ${first_name} ${last_name} created`;
+  const msgDeleted = `🗑️ User ${first_name} ${last_name} has been deleted `;
   const checkMsg = msg === 'create' ? msgCreated : msgDeleted;
 
   //Create an alert to show user has been delete.

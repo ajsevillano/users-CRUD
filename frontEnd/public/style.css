@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  color: #031b4e;
+  color: #0b2138;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,17 @@ body {
   display: flex;
   width: 100%;
   margin-top: 1rem;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.add-user-form-container label {
+  margin-bottom: 0.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
 }
 
 .input-add-new-user {
@@ -47,10 +57,6 @@ body {
   font-weight: 600;
 }
 
-.input-add-new-user {
-  flex: 1 1 0px;
-}
-
 input:focus {
   border-color: #3498db;
 }
@@ -59,37 +65,38 @@ select:focus {
   border-color: #3498db;
 }
 
-label p {
-  margin-bottom: 0.5rem;
-}
-
 .align-self-end {
   align-self: end;
 }
 
-.add-to-list-button {
+.add-user-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+.add-user-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20rem;
-  height: 3.4rem;
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 1.1rem;
   border: none;
+  height: 43px;
   cursor: pointer;
   outline-color: #d4d4d4;
   border-radius: 5px;
   background-color: #3498db;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: white;
+  padding: 1rem;
 }
 
 .small-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 20rem; */
-  height: 2rem;
+  padding: 0.5rem;
   color: white;
   margin: 0.3rem;
   border-radius: 5px;
@@ -167,16 +174,8 @@ svg {
   width: 15%;
 }
 
-.w-20 {
-  width: 20%;
-}
-
 .w-25 {
   width: 25%;
-}
-
-.w-40 {
-  width: 40%;
 }
 
 .w-45 {
@@ -187,20 +186,12 @@ svg {
   width: 50%;
 }
 
-.w-60 {
-  width: 60%;
-}
-
 .w-70 {
   width: 70%;
 }
 
 .align-end {
   text-align: end;
-}
-
-.grey-font {
-  color: grey;
 }
 
 .bold {
@@ -370,5 +361,7 @@ svg {
 }
 
 .cancel {
-  background-color: rgb(180, 180, 180);
+  background-color: transparent;
+  border: 1px solid #3498db;
+  color: #3498db;
 }
