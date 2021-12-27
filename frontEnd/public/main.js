@@ -2,20 +2,33 @@ import { generateTableRow } from '../generateTableRow.js';
 import { createUser } from '../crud.js';
 import { getUsers } from '../crud.js';
 
-//Start the app
-startApp();
+const inputElements = [
+  { id: 'first_name', element: '#first-name' },
+  { id: 'last_name', element: '#last-name' },
+  { id: 'email', element: '#email' },
+  { id: 'catchphrase', element: '#catchphrase' },
+];
 
-async function startApp() {
-  //GET ALL USERS
-  const usersList = await getUsers();
+//GET ALL USERS
+const usersList = await getUsers();
 
-  //Order the response by id
-  const usersListById = usersList.payload.sort(function (a, b) {
+//ORDER USERS BY ID
+const usersListById = orderFetchUsersById(usersList.payload);
+
+// CREATE THE TABLE ROWS
+mapUsersList(usersListById);
+
+//CREATE EVENT LISTENERS FOR THE INPUTS
+createEvenTListeners();
+
+function orderFetchUsersById(payload) {
+  return payload.sort(function (a, b) {
     return a.id - b.id || a.name.localeCompare(b.name);
   });
+}
 
-  // CREATE THE TABLE ROWS
-  usersListById.map((user) =>
+function mapUsersList(usersListById) {
+  return usersListById.map((user) =>
     generateTableRow(
       user.id,
       user.first_name,
@@ -24,17 +37,7 @@ async function startApp() {
       user.catchphrase
     )
   );
-
-  //CREATE EVENT LISTENERS FOR THE INPUTS
-  createEvenTListeners();
 }
-
-const inputElements = [
-  { id: 'first_name', element: '#first-name' },
-  { id: 'last_name', element: '#last-name' },
-  { id: 'email', element: '#email' },
-  { id: 'catchphrase', element: '#catchphrase' },
-];
 
 function createEvenTListeners() {
   inputElements.map((element) => {
