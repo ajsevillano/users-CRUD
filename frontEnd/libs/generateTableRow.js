@@ -1,16 +1,10 @@
 import { button } from '../button.js';
 import modal from '../modal/index.js';
+import { deleteUser } from './crud.js';
 
 const tableRows = document.querySelector('.table-rows');
 
-export function generateTableRow(
-  id,
-  firstName,
-  lastName,
-  email,
-  catchphrase,
-  deleteUser
-) {
+export function generateTableRow(id, firstName, lastName, email, catchphrase) {
   //Create the row div and attach it to table Rows div
   const divRow = document.createElement('div');
   divRow.classList.add('row');
