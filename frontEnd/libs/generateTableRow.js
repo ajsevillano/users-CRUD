@@ -38,6 +38,14 @@ export function generateTableRow(
   );
 }
 
+function generateColums(innerText = '', divRow, styles) {
+  const nameElement = document.createElement('div');
+  styles.map((element) => nameElement.classList.add(`${element}`));
+  nameElement.innerText = innerText;
+  divRow.appendChild(nameElement);
+  return nameElement;
+}
+
 function generateLastColumn(
   divRow,
   catchphrase,
@@ -75,12 +83,4 @@ function generateLastColumn(
   //Add event listener to the button
   deleteButton.addEventListener('click', () => deleteUser(id));
   return divRow.appendChild(lastRow);
-}
-
-function generateColums(innerText = '', divRow, styles) {
-  const nameElement = document.createElement('div');
-  styles.map((element) => nameElement.classList.add(`${element}`));
-  nameElement.innerText = innerText;
-  divRow.appendChild(nameElement);
-  return nameElement;
 }

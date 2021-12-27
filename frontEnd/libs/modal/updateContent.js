@@ -1,4 +1,4 @@
-import createInputElement from '../input/input.js';
+import createInputElement from '../input.js';
 import closeModal from './close.js';
 import { destroyContentDiv } from '../others.js';
 import { fetchUpdate } from '../fetch.js';

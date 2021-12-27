@@ -27,41 +27,31 @@ async function startApp() {
       deleteUser
     )
   );
+  //CREATE EVENT LISTENERS FOR THE INPUTS
+  createEvenTListeners();
 }
 
-function updateFormObjectValues(e, key) {
-  let value = '';
-  //Easter Egg
-  if (key === 'first_name' && e.target.value === 'Mireia') {
-    value = `👶 ${e.target.value}`;
-  } else {
-    value = e.target.value;
-  }
+const inputElements = [
+  { id: 'first_name', element: '#first-name' },
+  { id: 'last_name', element: '#last-name' },
+  { id: 'email', element: '#email' },
+  { id: 'catchphrase', element: '#catchphrase' },
+];
 
+function createEvenTListeners() {
+  inputElements.map((element) => {
+    const inputElement = document.querySelector(element.element);
+    inputElement.addEventListener('keyup', (e) =>
+      updateFormObjectValues(e, element.id)
+    );
+  });
+}
+
+//INSERT USER FORM INPUT INTO AN OBJECT TO BE SEND AS FETCH BODY
+function updateFormObjectValues(e, key) {
+  let value = e.target.value;
   return (formOject[key] = value);
 }
-
-//Get the first Name
-const firstName = document.querySelector('#first-name');
-firstName.addEventListener('keyup', (e) =>
-  updateFormObjectValues(e, 'first_name')
-);
-
-//Get last name
-const lastName = document.querySelector('#last-name');
-lastName.addEventListener('keyup', (e) =>
-  updateFormObjectValues(e, 'last_name')
-);
-
-//Get email
-const email = document.querySelector('#email');
-email.addEventListener('keyup', (e) => updateFormObjectValues(e, 'email'));
-
-//Get catchphrase
-const catchphrase = document.querySelector('#catchphrase');
-catchphrase.addEventListener('keyup', (e) =>
-  updateFormObjectValues(e, 'catchphrase')
-);
 
 //SEND FORM BUTTON
 const addNewUser = document.querySelector('#add-user-button');
