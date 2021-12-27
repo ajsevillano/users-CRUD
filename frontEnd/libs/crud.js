@@ -21,8 +21,8 @@ export async function createUser(formObject) {
 export async function deleteUser(id) {
   const response = await fetchDelete(id);
   const tableRows = document.querySelector('.table-rows');
-  //Create an animation to remove a row from the DOM when is deleted.
+  //Invoke an animation that fade out and remove the row that has been deleted.
   removeRowAnimation(id, tableRows);
-  //Create an alert to confirm user has been deleted
+  //Show an alert showing a confirmation the user has been deleted
   createAlert(response);
 }

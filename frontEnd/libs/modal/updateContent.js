@@ -25,7 +25,7 @@ export function createFormItems(
     { id: 'email', value: email, label: 'Email' },
     { id: 'catchphrase', value: catchphrase, label: 'Catchphrase' },
   ];
-  createH1Title(id, modalContent);
+  createH1Title(firstName, modalContent);
   createFormInputs(modalInputNodes, modalContent);
   createButtons(id, modalContent, modalBox, modalContainer);
 }
@@ -51,10 +51,10 @@ function consolelog(e, key) {
 }
 
 //CREATE THE H1 TITLE
-function createH1Title(id, modalContent) {
+function createH1Title(firstName, modalContent) {
   //Create and h1 with the id inside
   const modalH1 = document.createElement('h1');
-  modalH1.innerText = `Update info for the user ${id}`;
+  modalH1.innerText = `Update info for the user ${firstName}`;
   modalContent.appendChild(modalH1);
 }
 
@@ -66,7 +66,7 @@ function createInputsLabels(id, label, modalContent) {
   modalContent.appendChild(labelInputName);
 }
 
-//CREATE THE BUTTON CONTAINER AND BUTTONS
+//CREATE THE BUTTON CONTAINER AND BUTTONS --- ESTO SE PUEDE DIVIDIR EN UNA FUNCION QUE CREE EL CONTAINER Y OTRA QUE GENERE LOS 2 BOTONES PASANDOLE PARAMETROS
 function createButtons(id, modalContent, modalBox, modalContainer) {
   buttonsContainer.classList.add('modal-buttons-container');
   modalContent.appendChild(buttonsContainer);

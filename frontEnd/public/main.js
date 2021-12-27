@@ -21,6 +21,7 @@ mapUsersList(usersListById);
 //CREATE EVENT LISTENERS FOR THE INPUTS
 createEvenTListeners();
 
+//HELPERS
 function orderFetchUsersById(payload) {
   return payload.sort(function (a, b) {
     return a.id - b.id || a.name.localeCompare(b.name);

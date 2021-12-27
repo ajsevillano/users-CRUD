@@ -292,6 +292,10 @@ svg {
   margin: 1rem 0;
 }
 
+.modal h1 span {
+  color: #3498db;
+}
+
 .modal label {
   width: 78%;
   font-weight: 800;
