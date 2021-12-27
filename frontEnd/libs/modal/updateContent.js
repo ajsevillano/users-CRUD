@@ -1,9 +1,7 @@
 import createInputElement from '../input.js';
 import closeModal from './close.js';
-import { destroyContentDiv } from '../others.js';
-import { fetchUpdate } from '../fetch.js';
-import generateSuccesModalContent from './succesContent.js';
 import { button } from '../button.js';
+import { updateUser } from '../crud.js';
 
 let UpdateBody = {};
 const buttonsContainer = document.createElement('div');
@@ -95,19 +93,4 @@ function createButtons(id, modalContent, modalBox, modalContainer) {
     updateUser(id, UpdateBody, modalBox, modalContainer, modalContent)
   );
   buttonCancel.addEventListener('click', () => closeModal(closeModalParams));
-}
-
-//UPDATE THE USER
-async function updateUser(
-  id,
-  UpdateBody,
-  modalBox,
-  modalContainer,
-  modalContent
-) {
-  const response = await fetchUpdate(id, UpdateBody);
-  destroyContentDiv(modalBox, modalContent);
-  //Create a new modal content with a success msg.
-  generateSuccesModalContent(modalBox, modalContainer);
-  return response;
 }
