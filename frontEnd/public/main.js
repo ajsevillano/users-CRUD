@@ -1,6 +1,6 @@
-import { generateTableRow } from '../generateTableRow.js';
 import { getUsers } from '../crud.js';
 import { getAllElements } from '../dom.js';
+import { generateTableRow } from '../generateTableRow.js';
 import { updateFormObjectValues } from '../newUserHandler.js';
 
 async function runApp() {
@@ -22,6 +22,7 @@ function orderFetchUsersById(payload) {
   });
 }
 
+//MAP USER LIST AND GENERATE THE TABLE
 function mapUsersList(usersListById) {
   return usersListById.map((user) =>
     generateTableRow(

@@ -1,4 +1,4 @@
-import { button } from '../dom.js';
+import { button, createDomElement } from '../dom.js';
 import modal from '../modal/index.js';
 import { deleteUser } from './crud.js';
 
@@ -6,9 +6,7 @@ const tableRows = document.querySelector('.table-rows');
 
 export function generateTableRow(id, firstName, lastName, email, catchphrase) {
   //Create the row div and attach it to table Rows div
-  const divRow = document.createElement('div');
-  divRow.classList.add('row');
-  divRow.setAttribute('id', `row-${id}`);
+  const divRow = createDomElement('div', 'row', ['id', `row-${id}`]);
   tableRows.appendChild(divRow);
 
   //Create the row with the name element

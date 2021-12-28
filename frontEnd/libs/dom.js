@@ -22,3 +22,14 @@ export function getAllElements(parent, element) {
   const getAllInputs = formContainer.querySelectorAll(element);
   return getAllInputs;
 }
+
+//CREATE A READY TO USE DOM ELEMENT
+export function createDomElement(elementType, styles, attribute) {
+  const element = document.createElement(elementType);
+  element.classList.add(styles);
+  if (attribute) {
+    const [attributeId, attributeValue] = attribute;
+    element.setAttribute(`${attributeId}`, `${attributeValue}`);
+  }
+  return element;
+}
