@@ -1,27 +1,20 @@
 import { generateTableRow } from '../generateTableRow.js';
-import { createUser } from '../crud.js';
-import { getUsers } from '../crud.js';
+import { getUsers, createUser } from '../crud.js';
+import { getAllElements } from '../dom.js';
 
-const inputElements = [
-  { id: 'first_name', element: '#first-name' },
-  { id: 'last_name', element: '#last-name' },
-  { id: 'email', element: '#email' },
-  { id: 'catchphrase', element: '#catchphrase' },
-];
+async function runApp() {
+  //GET ALL USERS
+  const usersList = await getUsers();
+  //ORDER USERS BY ID
+  const usersListById = orderFetchUsersById(usersList.payload);
+  // CREATE THE TABLE ROWS
+  mapUsersList(usersListById);
+  //CREATE EVENT LISTENERS FOR THE INPUTS
+  createEventListeners();
+}
 
-//GET ALL USERS
-const usersList = await getUsers();
+runApp();
 
-//ORDER USERS BY ID
-const usersListById = orderFetchUsersById(usersList.payload);
-
-// CREATE THE TABLE ROWS
-mapUsersList(usersListById);
-
-//CREATE EVENT LISTENERS FOR THE INPUTS
-createEvenTListeners();
-
-//HELPERS
 function orderFetchUsersById(payload) {
   return payload.sort(function (a, b) {
     return a.id - b.id || a.name.localeCompare(b.name);
@@ -40,14 +33,18 @@ function mapUsersList(usersListById) {
   );
 }
 
-function createEvenTListeners() {
-  inputElements.map((element) => {
-    const inputElement = document.querySelector(element.element);
-    inputElement.addEventListener('keyup', (e) =>
+//CREATE THE EVENT LISTENERS
+function createEventListeners() {
+  const getAllInputs = getAllElements('.add-user-form-container', 'input');
+  return getAllInputs.forEach((element) => {
+    element.addEventListener('keyup', (e) =>
       updateFormObjectValues(e, element.id)
     );
   });
 }
+
+/// DEFAULT VALUES FOR THE CREATE USER FORM
+let formObject = { first_name: '', last_name: '', email: '', catchphrase: '' };
 
 //INSERT USER FORM INPUT INTO AN OBJECT TO BE SEND AS FETCH BODY
 function updateFormObjectValues(e, key) {
@@ -58,6 +55,3 @@ function updateFormObjectValues(e, key) {
 //GRAB SEND FORM BUTTON
 const addNewUser = document.querySelector('#add-user-button');
 addNewUser.addEventListener('click', () => createUser(formObject));
-
-/// GET DATA FROM THE ADD USER FORM
-let formObject = { first_name: '', last_name: '', email: '', catchphrase: '' };

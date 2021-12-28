@@ -15,3 +15,10 @@ export function createInputElement(id, value) {
   input.type = 'text';
   return input;
 }
+
+//GET ALL THE INPUTS FROM DOM
+export function getAllElements(parent, element) {
+  const formContainer = document.querySelector(parent);
+  const getAllInputs = formContainer.querySelectorAll(element);
+  return getAllInputs;
+}
