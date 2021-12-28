@@ -1,6 +1,6 @@
 import createInputElement from '../input.js';
 import closeModal from './close.js';
-import { button } from '../button.js';
+import { button } from '../dom.js';
 import { updateUser } from '../crud.js';
 
 let UpdateBody = {};

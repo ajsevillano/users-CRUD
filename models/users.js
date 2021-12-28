@@ -1,4 +1,3 @@
-import users from '../data/users.js';
 import query from '../db/index.js';
 
 // GET ALL USERS

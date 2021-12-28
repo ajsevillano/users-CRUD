@@ -1,4 +1,4 @@
-import { createFormItems } from './updateContent.js';
+import { createFormItems } from './createFormItems.js';
 
 const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
