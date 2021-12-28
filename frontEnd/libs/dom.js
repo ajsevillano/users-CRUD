@@ -1,12 +1,3 @@
-export function button(cssClasses, lastRow, id, innerText) {
-  let Button = document.createElement('button');
-  cssClasses.map((element) => Button.classList.add(`${element}`));
-  Button.innerText = innerText;
-  lastRow.appendChild(Button);
-  Button.setAttribute('id', id);
-  return Button;
-}
-
 export function createInputElement(id, value) {
   const input = document.createElement('input');
   input.setAttribute('id', id);
@@ -24,9 +15,20 @@ export function getAllElements(parent, element) {
 }
 
 //CREATE A READY TO USE DOM ELEMENT
-export function createDomElement(elementType, styles, attribute) {
+export function createDomElement(elementType, styles, attribute, innerText) {
   const element = document.createElement(elementType);
-  element.classList.add(styles);
+
+  //Check if the styles are an array or a string
+  typeof styles === 'object'
+    ? styles.map((style) => element.classList.add(style))
+    : element.classList.add(styles);
+
+  //Check if there is an innerText
+  if (innerText) {
+    element.innerText = innerText;
+  }
+
+  //Check if there is an attribute
   if (attribute) {
     const [attributeId, attributeValue] = attribute;
     element.setAttribute(`${attributeId}`, `${attributeValue}`);

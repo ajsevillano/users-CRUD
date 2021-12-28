@@ -1,5 +1,5 @@
 import closeModal from './close.js';
-import { createInputElement, button } from '../dom.js';
+import { createInputElement, createDomElement } from '../dom.js';
 import { updateUser } from '../crud.js';
 
 let UpdateBody = {};
@@ -68,18 +68,18 @@ function createButtons(id, modalContent, modalBox, modalContainer) {
   buttonsContainer.classList.add('modal-buttons-container');
   modalContent.appendChild(buttonsContainer);
   //Cancel button
-  const buttonCancel = button(
+  const buttonCancel = createDomElement(
+    'button',
     ['modal-buttons', 'cancel'],
-    buttonsContainer,
-    'cancel-button',
+    ['id', 'cancel-button'],
     'Cancel'
   );
 
   //Update button
-  const buttonUpdate = button(
+  const buttonUpdate = createDomElement(
+    'button',
     ['modal-buttons', 'confirm'],
-    buttonsContainer,
-    'update-button',
+    ['id', 'update-button'],
     'Update'
   );
 
