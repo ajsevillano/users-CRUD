@@ -1,6 +1,7 @@
 import { generateTableRow } from '../generateTableRow.js';
-import { getUsers, createUser } from '../crud.js';
+import { getUsers } from '../crud.js';
 import { getAllElements } from '../dom.js';
+import { updateFormObjectValues } from '../newUserHandler.js';
 
 async function runApp() {
   //GET ALL USERS
@@ -42,16 +43,3 @@ function createEventListeners() {
     );
   });
 }
-
-/// DEFAULT VALUES FOR THE CREATE USER FORM
-let formObject = { first_name: '', last_name: '', email: '', catchphrase: '' };
-
-//INSERT USER FORM INPUT INTO AN OBJECT TO BE SEND AS FETCH BODY
-function updateFormObjectValues(e, key) {
-  let value = e.target.value;
-  return (formObject[key] = value);
-}
-
-//GRAB SEND FORM BUTTON
-const addNewUser = document.querySelector('#add-user-button');
-addNewUser.addEventListener('click', () => createUser(formObject));
