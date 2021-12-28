@@ -1,4 +1,4 @@
-import { button } from '../button.js';
+import { button } from '../dom.js';
 import modal from '../modal/index.js';
 import { deleteUser } from './crud.js';
 
