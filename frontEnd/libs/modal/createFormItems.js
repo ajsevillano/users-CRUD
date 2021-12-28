@@ -1,6 +1,5 @@
-import createInputElement from '../input.js';
 import closeModal from './close.js';
-import { button } from '../dom.js';
+import { createInputElement, button } from '../dom.js';
 import { updateUser } from '../crud.js';
 
 let UpdateBody = {};
@@ -38,12 +37,12 @@ function createFormInputs(modalInputNodes, modalContent) {
     //WHEN CREATE THE INPUTS, WE FILL THE UPDATE BODY OBJECT WITH THE CURRENT INPUTS INFORMATION
     UpdateBody = { ...UpdateBody, [inputElement.id]: inputElement.value };
     //ADD EVENT LISTENER TO EVERY INPUT
-    input.addEventListener('keyup', (e) => consolelog(e, inputElement.id));
+    input.addEventListener('keyup', (e) => updatePutBody(e, inputElement.id));
   });
 }
 
 //UPDATE BODY VALUES OBJECT WHEN INPUT CHANGES
-function consolelog(e, key) {
+function updatePutBody(e, key) {
   let value = e.target.value;
   return (UpdateBody[key] = value);
 }

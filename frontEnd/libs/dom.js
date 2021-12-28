@@ -6,3 +6,12 @@ export function button(cssClasses, lastRow, id, innerText) {
   Button.setAttribute('id', id);
   return Button;
 }
+
+export function createInputElement(id, value) {
+  const input = document.createElement('input');
+  input.setAttribute('id', id);
+  input.classList.add('input-modal');
+  input.value = value;
+  input.type = 'text';
+  return input;
+}
