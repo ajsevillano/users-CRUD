@@ -1,6 +1,6 @@
 import { getAllElements } from './dom.js';
 import { generateTableRow } from './generateTableRow.js';
-import { updateFormObjectValues } from './newUserHandler.js';
+import { updateFormObjectValues } from './newUserFormHandler.js';
 
 //ORDER THE USERS FECTH BY ID
 export function orderFetchUsersById(payload) {

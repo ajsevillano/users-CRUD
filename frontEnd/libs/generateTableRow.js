@@ -1,36 +1,37 @@
 import { createDomElement } from '../dom.js';
-import modal from '../modal/index.js';
+import modal from '../modal/open.js';
 import { deleteUser } from './crud.js';
 
 const tableRows = document.querySelector('.table-rows');
 
 export function generateTableRow(id, firstName, lastName, email, catchphrase) {
-  //Create the div element "Row" & append all the colums
+  //ROW THAT CONTAINS ALL THE COLUMNS
   const divRow = createDomElement('div', null, {
     class: 'row',
     id: `row-${id}`,
   });
-  tableRows.appendChild(divRow);
-  //Create the row with the name element
+  //COLUMN WITH THE NAME
   const columnName = createDomElement('div', firstName, {
     class: `w-15 bold`,
   });
-  divRow.appendChild(columnName);
-  //Create the row with the last_name element
+  //COLUMN WITH THE LASTNAME
   const columnLastName = createDomElement('div', lastName, {
     class: `w-15 bold`,
   });
-  divRow.appendChild(columnLastName);
-  // //Create the row with the email element
+  //COLUMN WITH THE EMAIL
   const columnEmail = createDomElement('div', email, {
     class: `w-25 bold`,
   });
-  divRow.appendChild(columnEmail);
-
-  //CREATE LAST COLUMN
+  //COLUMN WITH THE CATCHPHRASE AND THE 2 BUTTONS
   const lastColumn = createDomElement('div', null, {
     class: `table-rows-row with-buttons w-45`,
   });
+
+  //APPEND THE DIVS
+  tableRows.appendChild(divRow);
+  divRow.appendChild(columnName);
+  divRow.appendChild(columnLastName);
+  divRow.appendChild(columnEmail);
 
   //CREATE LAST COLUMN CONTENT
   addLastColumnContent(
@@ -58,15 +59,13 @@ function addLastColumnContent(
   const columnCatchphrase = createDomElement('div', catchphrase, {
     class: `w-70 bold`,
   });
-  lastColumn.appendChild(columnCatchphrase);
 
   //Create the update button
   const updateButton = createDomElement('button', 'Update', {
     class: `w-15 align-end small-button success-color`,
     id: `row-${id}`,
   });
-  //
-  lastColumn.appendChild(updateButton);
+
   //Add event listener to the button
   updateButton.addEventListener('click', () =>
     modal(id, catchphrase, firstName, lastName, email)
@@ -77,6 +76,8 @@ function addLastColumnContent(
     class: `w-15 align-end small-button alert-color`,
     id: `row-${id}`,
   });
+  lastColumn.appendChild(columnCatchphrase);
+  lastColumn.appendChild(updateButton);
   lastColumn.appendChild(deleteButton);
 
   //Add event listener to the button
