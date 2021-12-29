@@ -1,5 +1,5 @@
 import query from '../index.js';
-import { users } from '../../data/users.js';
+import { users } from '../mockData/users.js';
 
 async function populateTableUsers() {
   for (let index = 0; index < users.length; index++) {

@@ -1,3 +1,5 @@
+//DATA GENERATED WITH https://www.mockaroo.com/
+
 export const users = [
   {
     id: 1,
