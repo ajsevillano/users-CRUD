@@ -1,9 +1,10 @@
 //Fetch configuration
-const url = 'http://localhost:3000/users/';
+const fetchConfig = { domain: 'localhost', port: '3000', path: '/users/' };
+const endPoint = `http://${fetchConfig.domain}:${fetchConfig.port}${fetchConfig.path}`;
 
 //FETCH ALL USERS
 export async function fetchUsers() {
-  const fetchResponse = await fetch(`${url}`, {
+  const fetchResponse = await fetch(`${endPoint}`, {
     method: 'GET',
   });
   //Store the response.
@@ -13,7 +14,7 @@ export async function fetchUsers() {
 
 //CREATE A NEW USER
 export async function fetchCreate(body) {
-  const fetchResponse = await fetch(`${url}`, {
+  const fetchResponse = await fetch(`${endPoint}`, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: {
@@ -28,7 +29,7 @@ export async function fetchCreate(body) {
 //UPDATE AN USER
 export async function fetchUpdate(id, body) {
   console.log(body);
-  const fetchResponse = await fetch(`${url}${id}`, {
+  const fetchResponse = await fetch(`${endPoint}${id}`, {
     method: 'PUT',
     body: JSON.stringify(body),
     headers: {
@@ -43,7 +44,7 @@ export async function fetchUpdate(id, body) {
 //FETCH DELETE BY ID
 export async function fetchDelete(id) {
   //We send a DELETE fetch and wait for the response
-  const fetchResponse = await fetch(`${url}${id}`, {
+  const fetchResponse = await fetch(`${endPoint}${id}`, {
     method: 'DELETE',
   });
   //Store the response.
