@@ -15,23 +15,12 @@ export function getAllElements(parent, element) {
 }
 
 //CREATE A READY TO USE DOM ELEMENT
-export function createDomElement(elementType, styles, attribute, innerText) {
+export function createDomElement(elementType, text, attributes) {
   const element = document.createElement(elementType);
-
-  //Check if the styles are an array or a string
-  typeof styles === 'object'
-    ? styles.map((style) => element.classList.add(style))
-    : element.classList.add(styles);
-
-  //Check if there is an innerText
-  if (innerText) {
-    element.innerText = innerText;
-  }
-
-  //Check if there is an attribute
-  if (attribute) {
-    const [attributeId, attributeValue] = attribute;
-    element.setAttribute(`${attributeId}`, `${attributeValue}`);
-  }
+  const keys = Object.keys(attributes);
+  keys.forEach((key) => {
+    element.setAttribute(`${key}`, `${attributes[key]}`);
+  });
+  element.innerText = text;
   return element;
 }
