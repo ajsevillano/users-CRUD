@@ -68,20 +68,16 @@ function createButtons(id, modalContent, modalBox, modalContainer) {
   buttonsContainer.classList.add('modal-buttons-container');
   modalContent.appendChild(buttonsContainer);
   //Cancel button
-  const buttonCancel = createDomElement(
-    'button',
-    ['modal-buttons', 'cancel'],
-    ['id', 'cancel-button'],
-    'Cancel'
-  );
+  const buttonCancel = createDomElement('button', 'Cancel', {
+    class: `modal-buttons cancel`,
+    id: 'cancel-button',
+  });
 
   //Update button
-  const buttonUpdate = createDomElement(
-    'button',
-    ['modal-buttons', 'confirm'],
-    ['id', 'update-button'],
-    'Update'
-  );
+  const buttonUpdate = createDomElement('button', 'Update', {
+    class: `modal-buttons confirm`,
+    id: 'update-button',
+  });
 
   //Append buttons
   buttonsContainer.appendChild(buttonCancel);

@@ -9,12 +9,10 @@ export default function generateSuccesModalContent(modalBox, modalContainer) {
   successMsg.innerText = 'User updated, Hurray!';
   modalContentSuccess.appendChild(successMsg);
 
-  const closeButton = createDomElement(
-    'button',
-    ['button-modal'],
-    ['id', 'close-button'],
-    'Close modal'
-  );
+  const closeButton = createDomElement('button', 'Close modal', {
+    class: 'button-modal',
+    id: 'close-button',
+  });
 
   const closeModalParams = [modalBox, modalContentSuccess, modalContainer];
   closeButton.addEventListener('click', () => closeModal(closeModalParams));
