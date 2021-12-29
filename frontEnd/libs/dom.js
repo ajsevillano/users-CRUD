@@ -17,10 +17,12 @@ export function getAllElements(parent, element) {
 //CREATE A READY TO USE DOM ELEMENT
 export function createDomElement(elementType, text, attributes) {
   const element = document.createElement(elementType);
-  const keys = Object.keys(attributes);
-  keys.forEach((key) => {
-    element.setAttribute(`${key}`, `${attributes[key]}`);
-  });
+  if (attributes) {
+    const keys = Object.keys(attributes);
+    keys.forEach((key) => {
+      element.setAttribute(`${key}`, `${attributes[key]}`);
+    });
+  }
   element.innerText = text;
   return element;
 }

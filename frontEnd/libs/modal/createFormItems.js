@@ -3,7 +3,6 @@ import { createInputElement, createDomElement } from '../dom.js';
 import { updateUser } from '../crud.js';
 
 let UpdateBody = {};
-const buttonsContainer = document.createElement('div');
 
 //CREATE THE UPDATE FORM ITEMS
 export function createFormItems(
@@ -27,6 +26,16 @@ export function createFormItems(
   createButtons(id, modalContent, modalBox, modalContainer);
 }
 
+//CREATE THE H1 TITLE
+function createH1Title(firstName, modalContent) {
+  const modalH1 = createDomElement(
+    'h1',
+    `Update info for the user ${firstName}`,
+    null
+  );
+  modalContent.appendChild(modalH1);
+}
+
 //CREATE THE INPUTS
 function createFormInputs(modalInputNodes, modalContent) {
   //CREATE THE INPUTS ELEMENTS
@@ -47,26 +56,19 @@ function updatePutBody(e, key) {
   return (UpdateBody[key] = value);
 }
 
-//CREATE THE H1 TITLE
-function createH1Title(firstName, modalContent) {
-  //Create and h1 with the id inside
-  const modalH1 = document.createElement('h1');
-  modalH1.innerText = `Update info for the user ${firstName}`;
-  modalContent.appendChild(modalH1);
-}
-
 //CREATE THE LABELS FOR THE INPUTS
 function createInputsLabels(id, label, modalContent) {
-  const labelInputName = document.createElement('label');
-  labelInputName.innerText = label;
-  labelInputName.htmlFor = id;
+  const labelInputName = createDomElement('label', label, { htmlFor: id });
   modalContent.appendChild(labelInputName);
 }
 
-//CREATE THE BUTTON CONTAINER AND BUTTONS --- ESTO SE PUEDE DIVIDIR EN UNA FUNCION QUE CREE EL CONTAINER Y OTRA QUE GENERE LOS 2 BOTONES PASANDOLE PARAMETROS
+//CREATE THE BUTTONS CONTAINER AND BUTTONS
 function createButtons(id, modalContent, modalBox, modalContainer) {
-  buttonsContainer.classList.add('modal-buttons-container');
-  modalContent.appendChild(buttonsContainer);
+  //Buttons container
+  const buttonsContainer = createDomElement('div', null, {
+    class: 'modal-buttons-container',
+  });
+
   //Cancel button
   const buttonCancel = createDomElement('button', 'Cancel', {
     class: `modal-buttons cancel`,
@@ -79,13 +81,48 @@ function createButtons(id, modalContent, modalBox, modalContainer) {
     id: 'update-button',
   });
 
+  appendTheButtons(modalContent, buttonsContainer, buttonCancel, buttonUpdate);
+  createEventListeners(
+    id,
+    modalContent,
+    modalBox,
+    modalContainer,
+    buttonCancel,
+    buttonUpdate
+  );
+}
+
+function appendTheButtons(
+  modalContent,
+  buttonsContainer,
+  buttonCancel,
+  buttonUpdate
+) {
   //Append buttons
+  modalContent.appendChild(buttonsContainer);
   buttonsContainer.appendChild(buttonCancel);
   buttonsContainer.appendChild(buttonUpdate);
+}
+
+function createEventListeners(
+  id,
+  modalContent,
+  modalBox,
+  modalContainer,
+  buttonCancel,
+  buttonUpdate
+) {
+  const updateUserParams = [
+    id,
+    UpdateBody,
+    modalBox,
+    modalContainer,
+    modalContent,
+  ];
+
   const closeModalParams = [modalBox, modalContent, modalContainer];
-  //Event Listeners
-  buttonUpdate.addEventListener('click', () =>
-    updateUser(id, UpdateBody, modalBox, modalContainer, modalContent)
-  );
+
+  //Add event listeners
+  buttonUpdate.addEventListener('click', () => updateUser(updateUserParams));
   buttonCancel.addEventListener('click', () => closeModal(closeModalParams));
 }

@@ -20,13 +20,9 @@ export async function createUser(formObject) {
 }
 
 //UPDATE THE USER
-export async function updateUser(
-  id,
-  UpdateBody,
-  modalBox,
-  modalContainer,
-  modalContent
-) {
+export async function updateUser(updateUserParams) {
+  const [id, UpdateBody, modalBox, modalContainer, modalContent] =
+    updateUserParams;
   const response = await fetchUpdate(id, UpdateBody);
   destroyContentDiv(modalBox, modalContent);
   //Create a new modal content with a success msg.

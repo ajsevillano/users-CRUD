@@ -2,11 +2,12 @@ import closeModal from './close.js';
 import { createDomElement } from '../dom.js';
 
 export default function generateSuccesModalContent(modalBox, modalContainer) {
-  const modalContentSuccess = document.createElement('div');
-  modalContentSuccess.classList.add('modal-content');
+  const modalContentSuccess = createDomElement('div', null, {
+    class: 'modal-content',
+  });
   modalBox.appendChild(modalContentSuccess);
-  const successMsg = document.createElement('h2');
-  successMsg.innerText = 'User updated, Hurray!';
+
+  const successMsg = createDomElement('h2', 'User updated, Hurray!', null);
   modalContentSuccess.appendChild(successMsg);
 
   const closeButton = createDomElement('button', 'Close modal', {
