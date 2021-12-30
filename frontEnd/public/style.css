@@ -271,6 +271,8 @@ svg {
 
 .modal-img {
   width: 40%;
+  background-image: url('background.png');
+  background-size: cover;
   background-color: #c5ebf6;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;

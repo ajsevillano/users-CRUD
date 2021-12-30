@@ -6,7 +6,7 @@ This App provides a backend that serves a REST API Service with the basic CRUD (
 
 ## Motivation
 
-This app has been created as a 🎄 holiday project for the School of code Bootcamp which I am part of.
+This app has been created as a 🎄 holiday project for the School of code Bootcamp which I am part of. This project integrates all that we have learned so far, Frontend, Backend, Databases and testing.
 
 ## Installation
 
