@@ -1,5 +1,5 @@
 //Fetch configuration
-const fetchConfig = { domain: 'localhost', port: '3000', path: '/users/' };
+const fetchConfig = { domain: 'localhost', port: '3000', path: '/api/users/' };
 const endPoint = `http://${fetchConfig.domain}:${fetchConfig.port}${fetchConfig.path}`;
 
 //FETCH ALL USERS

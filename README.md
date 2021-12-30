@@ -50,6 +50,12 @@ npm run dev
 http://localhost:3000
 ```
 
+**The Rest API will be running on**
+
+```bash
+http://localhost:3000/api/users
+```
+
 ## Features
 
 - 👤 **Adding Users** : Using the form at the top of the home page you can create new users into the database.
