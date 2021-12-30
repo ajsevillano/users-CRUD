@@ -2,6 +2,8 @@
 
 This App provides a backend that serves a REST API Service with the basic CRUD (create, read, update, delete) operations. The app includes a mock database. If you want you can use a local postgresql database server,or use an online service as [Heroku](https://www.heroku.com/) .The frontEnd will serve the information and allow you to create,update and delete users from an easy and intuitive UI.
 
+![crud-screenshot](https://user-images.githubusercontent.com/35935634/147739835-89496fa7-032d-4c63-8fa7-fe4bf26bda52.gif)
+
 ## Motivation
 
 This app has been created as a 🎄 holiday project for the School of code Bootcamp which I am part of.
