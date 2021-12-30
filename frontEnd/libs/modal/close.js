@@ -1,4 +1,4 @@
-import { destroyContentDiv } from '../others.js';
+import { destroyContentDiv } from '../dom.js';
 
 export default function closeModal(closeModalParams) {
   //Destructuring the params

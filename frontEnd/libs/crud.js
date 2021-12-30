@@ -1,7 +1,7 @@
 import { fetchCreate, fetchDelete, fetchUsers, fetchUpdate } from './fetch.js';
 import { createAlert } from './alert/createAlert.js';
 import { removeRowAnimation } from './alert/animations.js';
-import { destroyContentDiv } from './others.js';
+import { destroyContentDiv } from './dom.js';
 import generateSuccesModalContent from './modal/succesContent.js';
 
 //GET ALL THE USERS

@@ -7,6 +7,11 @@ export function createInputElement(id, value) {
   return input;
 }
 
+//DESTROY THE CONTENT INSIDE MODAL CONTENT DIV
+export function destroyContentDiv(modalBox, modalContent) {
+  modalBox.removeChild(modalContent);
+}
+
 //GET ALL THE INPUTS FROM DOM
 export function getAllElements(parent, element) {
   const formContainer = document.querySelector(parent);
