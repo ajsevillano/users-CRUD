@@ -28,7 +28,6 @@ export async function fetchCreate(body) {
 
 //UPDATE AN USER
 export async function fetchUpdate(id, body) {
-  console.log(body);
   const fetchResponse = await fetch(`${endPoint}${id}`, {
     method: 'PUT',
     body: JSON.stringify(body),
@@ -49,6 +48,5 @@ export async function fetchDelete(id) {
   });
   //Store the response.
   const response = await fetchResponse.json();
-  console.log(response);
   return response;
 }

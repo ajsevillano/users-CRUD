@@ -7,7 +7,7 @@ const sqlString = `DROP TABLE users;`;
 // Use our query function and hand it our SQL string inside of a createBooksTable function
 async function deleteUsersTable() {
   const res = await query(sqlString);
-  console.log('Users table deleted', res);
+  console.log('table users deleted', res);
 }
 
 // Call our createBooksTable function

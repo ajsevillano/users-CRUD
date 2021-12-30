@@ -7,7 +7,6 @@ import generateSuccesModalContent from './modal/succesContent.js';
 //GET ALL THE USERS
 export async function getUsers() {
   const response = await fetchUsers();
-  console.log(response);
   return response;
 }
 
@@ -15,7 +14,6 @@ export async function getUsers() {
 export async function createUser(formObject) {
   const response = await fetchCreate(formObject);
   //Create an alert to confirm user has been deleted
-  console.log(response);
   createAlert(response, 'create');
 }
 
