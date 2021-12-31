@@ -92,6 +92,10 @@ select:focus {
   padding: 1rem;
 }
 
+.add-user-button:hover {
+  background-color: #45a9ec;
+}
+
 .small-button {
   display: flex;
   justify-content: center;
@@ -110,8 +114,16 @@ select:focus {
   background-color: #1abc9c;
 }
 
+.success-color:hover {
+  background-color: #38ddbc;
+}
+
 .alert-color {
   background-color: #ff4163;
+}
+
+.alert-color:hover {
+  background-color: #d33a56;
 }
 
 svg {
