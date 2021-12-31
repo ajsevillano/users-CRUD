@@ -64,6 +64,8 @@ http://localhost:3000/api/users
 
 - ❌ **Delete user** : Using the delete button the user will be removed from the database.
 
+- ⚠️ **Alerts** : When an user is create or delete an alert will pop up on the top of the page to confirm the action.
+
 ## Technical Details
 
 Libraries used in this project are:
@@ -73,6 +75,7 @@ Libraries used in this project are:
 - [Express](https://www.npmjs.com/package/express): A web framework for node
 - [PG](https://www.npmjs.com/package/pg) : Non-blocking PostgreSQL client for Node.js.
 - [DotEnv](https://www.npmjs.com/package/dotenv): (Dev dependency) A zero-dependency module that loads environment variables from a .env file
+- [Jest](https://www.npmjs.com/package/jest): (Dev dependency) A library for testing.
 
 ### Frontend
 
@@ -84,18 +87,18 @@ This is a list of the end points used by the Api
 
 ```javascript
 // (GET) Return all the users
-localhost:3000/users
+localhost:3000/api/users
 
 // (GET) Return an user by Id
-localhost:3000/users/:id
+localhost:3000/api/users/:id
 
 // (POST) Create a new user in the database
-localhost:3000/users/
+localhost:3000/api/users/
 
 // (PUT) Update an user by Id
-localhost:3000/users/:id
+localhost:3000/api/users/:id
 
 // (DELETE) Delete an user based on the Id
-localhost:3001/users/:id
+localhost:3001/api/users/:id
 
 ```
