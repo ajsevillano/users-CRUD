@@ -3,6 +3,7 @@ import { createAlert } from './alert/createAlert.js';
 import { removeRowAnimation } from './alert/animations.js';
 import { destroyContentDiv } from './dom.js';
 import generateSuccesModalContent from './modal/succesContent.js';
+import { emptyNewUserForm } from './mainUtils.js';
 
 //GET ALL THE USERS
 export async function getUsers() {
@@ -13,6 +14,7 @@ export async function getUsers() {
 //POST THE NEW USER
 export async function createUser(formObject) {
   const response = await fetchCreate(formObject);
+  emptyNewUserForm();
   //Create an alert to confirm user has been deleted
   createAlert(response, 'create');
 }
