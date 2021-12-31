@@ -1,6 +1,7 @@
 import { createDomElement } from '../dom.js';
 import modal from '../modal/open.js';
 import { deleteUser } from './crud.js';
+import avatar from './avatarGenerator.js';
 
 const tableRows = document.querySelector('.table-rows');
 
@@ -10,9 +11,14 @@ export function generateTableRow(id, firstName, lastName, email, catchphrase) {
     class: 'row',
     id: `row-${id}`,
   });
+  //COLUMN WITH THE AVATAR
+  const columnAvatar = createDomElement('img', null, {
+    class: `w-3`,
+    src: avatar(firstName, lastName),
+  });
   //COLUMN WITH THE NAME
   const columnName = createDomElement('div', firstName, {
-    class: `w-15 bold`,
+    class: `w-12 bold`,
   });
   //COLUMN WITH THE LASTNAME
   const columnLastName = createDomElement('div', lastName, {
@@ -29,6 +35,7 @@ export function generateTableRow(id, firstName, lastName, email, catchphrase) {
 
   //APPEND THE DIVS
   tableRows.appendChild(divRow);
+  divRow.appendChild(columnAvatar);
   divRow.appendChild(columnName);
   divRow.appendChild(columnLastName);
   divRow.appendChild(columnEmail);

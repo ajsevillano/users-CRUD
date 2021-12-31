@@ -170,8 +170,21 @@ svg {
 }
 
 /* TABLE ROWS WIDTH */
+.w-3 {
+  width: 3%;
+  margin-right: 1rem;
+}
+
 .w-15 {
   width: 15%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-12 {
+  width: 12%;
 }
 
 .w-25 {
@@ -370,4 +383,10 @@ svg {
   background-color: transparent;
   border: 1px solid #3498db;
   color: #3498db;
+}
+
+.avatar-div {
+  width: 40px;
+  height: 40px;
+  background-color: #ff4163;
 }
