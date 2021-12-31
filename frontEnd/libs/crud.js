@@ -3,7 +3,7 @@ import { createAlert } from './alert/createAlert.js';
 import { removeRowAnimation } from './alert/animations.js';
 import { destroyContentDiv } from './dom.js';
 import generateSuccesModalContent from './modal/succesContent.js';
-import { emptyNewUserForm } from './mainUtils.js';
+import { emptyNewUserForm } from './newUserFormHandler.js';
 
 //GET ALL THE USERS
 export async function getUsers() {

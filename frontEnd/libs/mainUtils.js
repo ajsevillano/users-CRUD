@@ -31,11 +31,3 @@ export function createEventListeners() {
     );
   });
 }
-
-//EMPTY FORM VALUES
-export function emptyNewUserForm() {
-  const getAllInputs = getAllElements('.add-user-form-container', 'input');
-  return getAllInputs.forEach((element) => {
-    element.value = '';
-  });
-}
