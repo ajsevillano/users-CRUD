@@ -29,5 +29,3 @@ function checkEmptyInputs() {
   );
   return result;
 }
-
-console.log(checkEmptyInputs());
