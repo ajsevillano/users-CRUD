@@ -23,9 +23,9 @@ export function emptyNewUserForm() {
 }
 
 //CHECK FOR EMPTY INPUTS
-function checkEmptyInputs() {
+export function checkEmptyInputs() {
   let result = Object.keys(formObject).filter(
     (key) => formObject[key] === '' || formObject[key] === null
   );
-  return result;
+  return result.length === 0 ? null : result;
 }
