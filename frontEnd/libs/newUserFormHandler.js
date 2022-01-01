@@ -21,3 +21,13 @@ export function emptyNewUserForm() {
     element.value = '';
   });
 }
+
+//CHECK FOR EMPTY INPUTS
+function checkEmptyInputs() {
+  let result = Object.keys(formObject).filter(
+    (key) => formObject[key] === '' || formObject[key] === null
+  );
+  return result;
+}
+
+console.log(checkEmptyInputs());
