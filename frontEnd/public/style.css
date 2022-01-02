@@ -126,6 +126,10 @@ select:focus {
   background-color: #d33a56;
 }
 
+.input-warning {
+  border: 1px solid #d33a56;
+}
+
 svg {
   margin-right: 1rem;
 }
