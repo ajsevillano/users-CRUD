@@ -1,5 +1,5 @@
 import closeModal from './close.js';
-import { createInputElement, createDomElement } from '../dom.js';
+import { createDomElement } from '../dom.js';
 import { updateUser } from '../crud.js';
 
 let UpdateBody = {};
@@ -41,7 +41,12 @@ function createFormInputs(modalInputNodes, modalContent) {
   //CREATE THE INPUTS ELEMENTS
   modalInputNodes.map((inputElement) => {
     createInputsLabels(inputElement.id, inputElement.label, modalContent);
-    const input = createInputElement(inputElement.id, inputElement.value);
+    const input = createDomElement('input', null, {
+      id: inputElement.id,
+      class: 'input-modal',
+      value: inputElement.value,
+      type: 'text',
+    });
     modalContent.appendChild(input);
     //WHEN CREATE THE INPUTS, WE FILL THE UPDATE BODY OBJECT WITH THE CURRENT INPUTS INFORMATION
     UpdateBody = { ...UpdateBody, [inputElement.id]: inputElement.value };
