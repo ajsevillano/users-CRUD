@@ -239,7 +239,6 @@ svg {
 }
 
 .alert-dialog {
-  background-color: #1abc9c;
   color: white;
   position: fixed;
   min-width: 300px;

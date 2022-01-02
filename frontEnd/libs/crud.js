@@ -22,12 +22,14 @@ export async function createUser(formObject) {
   const unfilledInputs = checkEmptyInputs();
   if (!unfilledInputs) {
     const response = await fetchCreate(formObject);
+    const { first_name, last_name } = response.payload[0];
     removeAllWarningBorders();
     emptyNewUserForm();
-    createAlert(response, 'create');
+    createAlert(`🎉 ${first_name} ${last_name} created`, 'success-color');
     emptyformObject();
   } else {
     addWarningBorder(unfilledInputs);
+    createAlert(`You must fill all the fields in the form`, 'alert-color');
   }
 }
 
@@ -45,9 +47,13 @@ export async function updateUser(updateUserParams) {
 //DELETE AN USER BY ID
 export async function deleteUser(id) {
   const response = await fetchDelete(id);
+  const { first_name, last_name } = response.payload[0];
   const tableRows = document.querySelector('.table-rows');
   //Invoke an animation that fade out and remove the row that has been deleted.
   removeRowAnimation(id, tableRows);
   //Show an alert showing a confirmation the user has been deleted
-  createAlert(response);
+  createAlert(
+    `🗑️ User ${first_name} ${last_name} has been deleted`,
+    'success-color'
+  );
 }

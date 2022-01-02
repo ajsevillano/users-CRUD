@@ -1,19 +1,13 @@
 import { alertAnimation } from './animations.js';
+import { createDomElement } from '../dom.js';
 
 const container = document.querySelector('.container');
 
-export function createAlert(response, msg) {
-  //Destructure the response
-  const { first_name, last_name } = response.payload[0];
-  //Define the messages to be shown
-  const msgCreated = `🎉 ${first_name} ${last_name} created`;
-  const msgDeleted = `🗑️ User ${first_name} ${last_name} has been deleted `;
-  const checkMsg = msg === 'create' ? msgCreated : msgDeleted;
-
+export function createAlert(msg, bgColor) {
   //Create an alert to show user has been delete.
-  let alertModal = document.createElement('div');
-  alertModal.innerText = checkMsg;
-  alertModal.classList.add('alert-dialog');
+  const alertModal = createDomElement('div', msg, {
+    class: `alert-dialog ${bgColor}`,
+  });
   container.appendChild(alertModal);
   //We run an animation to show and hide the Alert
   alertAnimation(alertModal);
