@@ -22,7 +22,7 @@ export function emptyNewUserForm() {
   });
 }
 
-//CHECK FOR EMPTY INPUTS
+//CHECK IF THERE ARE EMPTY VALUES IN THE FORMOBJECT OBJECT
 export function checkEmptyInputs() {
   let result = Object.keys(formObject).filter(
     (key) => formObject[key] === '' || formObject[key] === null
@@ -32,24 +32,21 @@ export function checkEmptyInputs() {
 
 //ADD A BORDER TO THE UNFILLED INPUT
 export function addWarningBorder(unfilledInputs) {
-  const algo = getAllElements('.add-user-form-container', 'input');
-  algo.map((input) => {
+  const getAllInputs = getAllElements('.add-user-form-container', 'input');
+  getAllInputs.map((input) => {
     unfilledInputs.includes(input.id)
       ? input.classList.add('input-warning')
       : input.classList.remove('input-warning');
   });
 }
 
+//AFTER SEND THE FORM, CLEAR ALL THE WARNING BORDER
 export function removeAllWarningBorders() {
-  const algo = getAllElements('.add-user-form-container', 'input');
-  algo.map((input) => input.classList.remove('input-warning'));
+  const getAllInputs = getAllElements('.add-user-form-container', 'input');
+  getAllInputs.map((input) => input.classList.remove('input-warning'));
 }
 
+//EMPTY THE FORMOBJECT TO BE SEND AGAIN
 export function emptyformObject() {
   formObject = { first_name: '', last_name: '', email: '', catchphrase: '' };
 }
-
-//TODO
-
-//Luego usar esta funcion en addWarningBorder y removeAllWarningBorders
-// Cambiar foreach por maps en emptyNewUserForm() y en mainUtils createEventListeners()
