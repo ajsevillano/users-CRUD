@@ -17,7 +17,7 @@ export function updateFormObjectValues(e, key) {
 //EMPTY FORM VALUES
 export function emptyNewUserForm() {
   const getAllInputs = getAllElements('.add-user-form-container', 'input');
-  return getAllInputs.forEach((element) => {
+  return getAllInputs.map((element) => {
     element.value = '';
   });
 }
@@ -32,8 +32,7 @@ export function checkEmptyInputs() {
 
 //ADD A BORDER TO THE UNFILLED INPUT
 export function addWarningBorder(unfilledInputs) {
-  const container = document.querySelector('.add-user-form-container');
-  const algo = [...container.querySelectorAll('input')];
+  const algo = getAllElements('.add-user-form-container', 'input');
   algo.map((input) => {
     unfilledInputs.includes(input.id)
       ? input.classList.add('input-warning')
@@ -42,11 +41,15 @@ export function addWarningBorder(unfilledInputs) {
 }
 
 export function removeAllWarningBorders() {
-  const container = document.querySelector('.add-user-form-container');
-  const algo = [...container.querySelectorAll('input')];
+  const algo = getAllElements('.add-user-form-container', 'input');
   algo.map((input) => input.classList.remove('input-warning'));
 }
 
 export function emptyformObject() {
   formObject = { first_name: '', last_name: '', email: '', catchphrase: '' };
 }
+
+//TODO
+
+//Luego usar esta funcion en addWarningBorder y removeAllWarningBorders
+// Cambiar foreach por maps en emptyNewUserForm() y en mainUtils createEventListeners()

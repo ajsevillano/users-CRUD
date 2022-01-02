@@ -15,7 +15,7 @@ export function destroyContentDiv(modalBox, modalContent) {
 //GET ALL THE INPUTS FROM DOM
 export function getAllElements(parent, element) {
   const formContainer = document.querySelector(parent);
-  const getAllInputs = formContainer.querySelectorAll(element);
+  const getAllInputs = [...formContainer.querySelectorAll(element)];
   return getAllInputs;
 }
 

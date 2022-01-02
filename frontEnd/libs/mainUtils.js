@@ -25,7 +25,7 @@ export function mapUsersList(usersListById) {
 //CREATE THE EVENT LISTENERS
 export function createEventListeners() {
   const getAllInputs = getAllElements('.add-user-form-container', 'input');
-  return getAllInputs.forEach((element) => {
+  return getAllInputs.map((element) => {
     element.addEventListener('keyup', (e) =>
       updateFormObjectValues(e, element.id)
     );
