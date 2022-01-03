@@ -12,8 +12,8 @@ export function createDomElement(elementType, text, attributes) {
 }
 
 //DESTROY THE CONTENT INSIDE MODAL CONTENT DIV
-export function destroyContentDiv(modalBox, modalContent) {
-  modalBox.removeChild(modalContent);
+export function destroyContentDiv(parent, child) {
+  parent.removeChild(child);
 }
 
 //GET ALL THE ELEMENTS FROM A PARENT
