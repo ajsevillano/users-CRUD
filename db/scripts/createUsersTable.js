@@ -5,7 +5,8 @@ const userQuery = `CREATE TABLE IF NOT EXISTS users(
                 first_name TEXT,
                 last_name TEXT,
                 email TEXT,
-                catchphrase TEXT
+                catchphrase TEXT,
+                timestamp BIGINT
                 )`;
 
 async function createUserTable() {

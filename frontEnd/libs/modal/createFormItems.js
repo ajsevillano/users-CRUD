@@ -13,7 +13,8 @@ export function createFormItems(
   email,
   modalContent,
   modalBox,
-  modalContainer
+  modalContainer,
+  timestamp
 ) {
   const modalInputNodes = [
     { id: 'first_name', value: firstName, label: 'Name' },
@@ -21,16 +22,16 @@ export function createFormItems(
     { id: 'email', value: email, label: 'Email' },
     { id: 'catchphrase', value: catchphrase, label: 'Catchphrase' },
   ];
-  createH1Title(firstName, modalContent);
+  createH1Title(firstName, modalContent, timestamp);
   createFormInputs(modalInputNodes, modalContent);
   createButtons(id, modalContent, modalBox, modalContainer);
 }
 
 //CREATE THE H1 TITLE
-function createH1Title(firstName, modalContent) {
+function createH1Title(firstName, modalContent, timestamp) {
   const modalH1 = createDomElement(
     'h1',
-    `Update info for the user ${firstName}`,
+    `Update info for the user ${firstName} at ${timestamp}`,
     null
   );
   modalContent.appendChild(modalH1);
