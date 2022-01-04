@@ -8,6 +8,10 @@ This App provides a backend that serves a REST API Service with the basic CRUD (
 
 This app has been created as a 🎄 holiday project for the School of code Bootcamp which I am part of. This project integrates all that we have learned so far, Frontend, Backend, Databases and testing.
 
+## Design
+
+You can see the low-fi & high-fi designs of the app on [Figma](https://www.figma.com/file/EWGf9bTaAAzCJIC0xPDNHh/CRUD-App?node-id=0%3A1)
+
 ## Installation
 
 Make a project directory, clone this repository and initialise the project.\
