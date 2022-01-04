@@ -1,4 +1,5 @@
 /node_modules
 restTest.http
 .env
+PLAN.MD
 TODO
