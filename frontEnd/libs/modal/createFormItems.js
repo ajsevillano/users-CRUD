@@ -13,7 +13,8 @@ export function createFormItems(
   email,
   modalContent,
   modalBox,
-  modalContainer
+  modalContainer,
+  timestamp
 ) {
   const modalInputNodes = [
     { id: 'first_name', value: firstName, label: 'Name' },
@@ -22,6 +23,7 @@ export function createFormItems(
     { id: 'catchphrase', value: catchphrase, label: 'Catchphrase' },
   ];
   createH1Title(firstName, modalContent);
+  createUpdateTime(modalContent, timestamp);
   createFormInputs(modalInputNodes, modalContent);
   createButtons(id, modalContent, modalBox, modalContainer);
 }
@@ -34,6 +36,22 @@ function createH1Title(firstName, modalContent) {
     null
   );
   modalContent.appendChild(modalH1);
+}
+
+function createUpdateTime(modalContent, timestamp) {
+  const formatTimeStamp = new Date(timestamp);
+  const date = formatTimeStamp.toLocaleDateString('en-GB', {
+    timeZone: 'UTC',
+  });
+  const time = formatTimeStamp.toLocaleTimeString('en-GB', {
+    timeZone: 'UTC',
+  });
+  const updateTime = createDomElement(
+    'p',
+    `Last update: ${date} at ${time}`,
+    null
+  );
+  modalContent.appendChild(updateTime);
 }
 
 //CREATE THE INPUTS

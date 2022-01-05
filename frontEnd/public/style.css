@@ -320,11 +320,17 @@ svg {
 
 .modal h1 {
   font-size: 1.3rem;
-  margin: 1rem 0;
+  margin: 1rem 0 0 0;
 }
 
 .modal h1 span {
   color: #3498db;
+}
+
+.modal p {
+  margin-bottom: 1rem;
+  margin-top: 0.2rem;
+  color: #9eb9d3;
 }
 
 .modal label {

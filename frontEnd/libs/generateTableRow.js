@@ -5,7 +5,14 @@ import avatar from './avatarGenerator.js';
 
 const tableRows = document.querySelector('.table-rows');
 
-export function generateTableRow(id, firstName, lastName, email, catchphrase) {
+export function generateTableRow(
+  id,
+  firstName,
+  lastName,
+  email,
+  catchphrase,
+  timestamp
+) {
   //ROW THAT CONTAINS ALL THE COLUMNS
   const divRow = createDomElement('div', null, {
     class: 'row',
@@ -48,7 +55,8 @@ export function generateTableRow(id, firstName, lastName, email, catchphrase) {
     id,
     firstName,
     lastName,
-    email
+    email,
+    timestamp
   );
 }
 
@@ -60,7 +68,8 @@ function addLastColumnContent(
   id,
   firstName,
   lastName,
-  email
+  email,
+  timestamp
 ) {
   //Create the catchphrase column
   const columnCatchphrase = createDomElement('div', catchphrase, {
@@ -75,7 +84,7 @@ function addLastColumnContent(
 
   //Add event listener to the button
   updateButton.addEventListener('click', () =>
-    modal(id, catchphrase, firstName, lastName, email)
+    modal(id, catchphrase, firstName, lastName, email, timestamp)
   );
 
   //Create the delete button

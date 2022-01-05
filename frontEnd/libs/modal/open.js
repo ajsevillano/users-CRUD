@@ -4,7 +4,14 @@ const modalBox = document.querySelector('.modal');
 const modalContent = document.createElement('div');
 const modalContainer = document.querySelector('.modal-container');
 
-export default function modal(id, catchphrase, firstName, lastName, email) {
+export default function modal(
+  id,
+  catchphrase,
+  firstName,
+  lastName,
+  email,
+  timestamp
+) {
   createContentDiv();
   activateDarkBackground();
   createFormItems(
@@ -15,7 +22,8 @@ export default function modal(id, catchphrase, firstName, lastName, email) {
     email,
     modalContent,
     modalBox,
-    modalContainer
+    modalContainer,
+    timestamp
   );
 }
 

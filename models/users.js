@@ -33,13 +33,16 @@ export async function createUser(newUser) {
   }
   //Destructuring the body
   const { first_name, last_name, email, catchphrase } = newUser;
+  //Get the time
+  const timestamp = 'now()';
   //Add the new user to the data
-  const sqlQuery = `INSERT into users (first_name,last_name,email,catchphrase) VALUES ($1,$2,$3,$4) RETURNING *;`;
+  const sqlQuery = `INSERT into users (first_name,last_name,email,catchphrase,timestamp) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
   const data = await query(sqlQuery, [
     first_name,
     last_name,
     email,
     catchphrase,
+    timestamp,
   ]);
   return responseHandler(true, data.rows);
 }
@@ -58,14 +61,17 @@ export async function updateUserByID(id, updatedUser) {
   let userId = Number(id);
   //Destructuring the body
   const { first_name, last_name, email, catchphrase } = updatedUser;
+  //Get the time
+  const timestamp = 'now()';
   //Add the new user to the data
-  const sqlQuery = `UPDATE users SET first_name = $1,last_name=$2,email=$3,catchphrase=$4 WHERE id=$5  RETURNING *;`;
+  const sqlQuery = `UPDATE users SET first_name = $1,last_name=$2,email=$3,catchphrase=$4,timestamp=$6 WHERE id=$5  RETURNING *;`;
   const data = await query(sqlQuery, [
     first_name,
     last_name,
     email,
     catchphrase,
     userId,
+    timestamp,
   ]);
   return responseHandler(true, data.rows);
 }
