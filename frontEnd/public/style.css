@@ -412,3 +412,15 @@ svg {
   height: 40px;
   background-color: #ff4163;
 }
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #3498db;
+  color: white;
+  font-weight: 500;
+  border-radius: 50%;
+}

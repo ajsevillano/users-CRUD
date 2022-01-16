@@ -19,9 +19,8 @@ export function generateTableRow(
     id: `row-${id}`,
   });
   //COLUMN WITH THE AVATAR
-  const columnAvatar = createDomElement('img', null, {
-    class: `w-3`,
-    src: avatar(firstName, lastName),
+  const columnAvatar = createDomElement('div', avatar([firstName, lastName]), {
+    class: `w-3 avatar`,
   });
   //COLUMN WITH THE NAME
   const columnName = createDomElement('div', firstName, {
