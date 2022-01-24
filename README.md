@@ -24,7 +24,8 @@ npm install
 ```
 
 Before run the app you will need to provide the data to connect to your database in the .env file.The app provides an example file with the structure.
-Run the next scripts to create the table and the data:
+This app uses a postgresql database. You can create one online for free in [Heroku](https://www.heroku.com/) or install [postgresql in your computer](postgresql.org/download/).
+Once you have your database created,run the next scripts to create the table and populate the data:
 
 ```javascript
 //Create the table users into the DB
