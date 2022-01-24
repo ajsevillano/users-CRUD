@@ -110,6 +110,11 @@ select:focus {
   border: none;
 }
 
+.add-user-button:active,
+.small-button:active {
+  transform: scale(0.9);
+}
+
 .success-color {
   background-color: #1abc9c;
 }
