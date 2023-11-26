@@ -13,17 +13,16 @@ export async function getUsers() {
 
 // GET A USER BY ID (UNUSED YET)
 export async function getUserByID(id) {
-  //Convert the string id to a number
-  let userId = Number(id);
-  //Find the user with the id given in the params
-  const userById = users.find((user) => user.id === userId);
-  //If the user doesn't exist, return the error response
-  if (!userById) {
-    //Return the response for the error
-    return responseHandler(false, errorMsgNotExist(userId));
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return responseHandler(false, errorMsgNotExist(id));
+    } else {
+      return responseHandler(true, user);
+    }
+  } catch (error) {
+    console.error('Unable to get the user:', error);
   }
-  //Return the user object for the response
-  return responseHandler(true, userById);
 }
 
 // CREATE A USER
