@@ -96,10 +96,22 @@ export async function updateUserByID(id, updatedUser) {
 export async function deleteUserByID(id) {
   //Convert the string id to a number
   let userId = Number(id);
-  //Find the position of the user by id
-  const sqlQuery = `DELETE FROM users WHERE id=$1 RETURNING *;`;
-  const data = await query(sqlQuery, [userId]);
-  return responseHandler(true, data.rows);
+  try {
+    // Delete the user from the database
+    const numberOfDestroyedRows = await User.destroy({
+      where: { id: userId },
+    });
+
+    // Check if the delete was successful
+    if (numberOfDestroyedRows === 0) {
+      return responseHandler(true, `User with ID ${id} not found.`);
+    }
+
+    return responseHandler(true, `User with ID ${id} deleted.`);
+  } catch (error) {
+    console.error('Unable to delete the user:', error);
+    return responseHandler(false, 'Unable to delete the user.');
+  }
 }
 
 function checkBodyObjIsEmpty(body) {
