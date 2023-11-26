@@ -62,20 +62,34 @@ export async function updateUserByID(id, updatedUser) {
   //Convert the string id to a number
   let userId = Number(id);
   //Destructuring the body
-  const { first_name, last_name, email, catchphrase } = updatedUser;
-  //Get the time
-  const timestamp = 'now()';
+  const { firstName, lastName, email, catchphrase } = updatedUser;
+
   //Add the new user to the data
-  const sqlQuery = `UPDATE users SET first_name = $1,last_name=$2,email=$3,catchphrase=$4,timestamp=$6 WHERE id=$5  RETURNING *;`;
-  const data = await query(sqlQuery, [
-    first_name,
-    last_name,
-    email,
-    catchphrase,
-    userId,
-    timestamp,
-  ]);
-  return responseHandler(true, data.rows);
+  try {
+    // Update the user in the database
+    const [numberOfAffectedRows, [updatedUser]] = await User.update(
+      {
+        firstName,
+        lastName,
+        email,
+        catchphrase,
+      },
+      {
+        where: { id: userId },
+        returning: true,
+      },
+    );
+
+    // Check if the update was successful
+    if (numberOfAffectedRows === 0) {
+      return responseHandler(false, `User with ID ${userId} not found.`);
+    }
+
+    return { success: true, data: updatedUser };
+  } catch (error) {
+    console.error('Unable to update the user:', error);
+    return responseHandler(false, 'Unable to update the user.');
+  }
 }
 
 // DELETE A USER BY ID
