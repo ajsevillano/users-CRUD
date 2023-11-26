@@ -6,7 +6,7 @@ const addNewUser = document.querySelector('#add-user-button');
 addNewUser.addEventListener('click', () => createUser(formObject));
 
 /// DEFAULT VALUES FOR THE CREATE USER FORM
-let formObject = { first_name: '', last_name: '', email: '', catchphrase: '' };
+let formObject = { firstName: '', lastName: '', email: '', catchphrase: '' };
 
 //INSERT USER FORM INPUT INTO AN OBJECT TO BE SEND AS FETCH BODY
 export function updateFormObjectValues(e, key) {
@@ -25,7 +25,7 @@ export function emptyNewUserForm() {
 //CHECK IF THERE ARE EMPTY VALUES IN THE FORMOBJECT OBJECT
 export function checkEmptyInputs() {
   let result = Object.keys(formObject).filter(
-    (key) => formObject[key] === '' || formObject[key] === null
+    (key) => formObject[key] === '' || formObject[key] === null,
   );
   return result.length === 0 ? null : result;
 }
@@ -48,5 +48,5 @@ export function removeAllWarningBorders() {
 
 //EMPTY THE FORMOBJECT TO BE SEND AGAIN
 export function emptyformObject() {
-  formObject = { first_name: '', last_name: '', email: '', catchphrase: '' };
+  formObject = { firstName: '', lastName: '', email: '', catchphrase: '' };
 }

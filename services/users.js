@@ -35,19 +35,18 @@ export async function createUser(newUser) {
     return responseHandler(false, errorMsgNoBody);
   }
   //Destructuring the body
-  const { first_name, last_name, email, catchphrase } = newUser;
-  //Get the time
-  const timestamp = 'now()';
-  //Add the new user to the data
-  const sqlQuery = `INSERT into users (first_name,last_name,email,catchphrase,timestamp) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
-  const data = await query(sqlQuery, [
-    first_name,
-    last_name,
-    email,
-    catchphrase,
-    timestamp,
-  ]);
-  return responseHandler(true, data.rows);
+  const { firstName, lastName, email, catchphrase } = newUser;
+  try {
+    const user = await User.create({
+      firstName,
+      lastName,
+      email,
+      catchphrase,
+    });
+    return responseHandler(true, user);
+  } catch (error) {
+    return responseHandler(false, 'Unable to create the user.');
+  }
 }
 
 // UPDATE A USER BY ID
