@@ -9,6 +9,7 @@ export async function fetchUsers() {
   });
   //Store the response.
   const response = await fetchResponse.json();
+  console.log(response);
   return response;
 }
 

@@ -1,10 +1,14 @@
 import query from '../db/index.js';
+import { User } from '../db/models/users.js';
 
 // GET ALL USERS
 export async function getUsers() {
-  //Return all the users
-  const data = await query(`SELECT * FROM  users;`);
-  return responseHandler(true, data.rows);
+  try {
+    const data = await User.findAll();
+    return responseHandler(true, data);
+  } catch (error) {
+    console.error('Unable to get the users:', error);
+  }
 }
 
 // GET A USER BY ID (UNUSED YET)

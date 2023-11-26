@@ -1,23 +1,21 @@
-import query from '../index.js';
 import { users } from '../mockData/users.js';
+import { User } from './createUsersTable.js';
 
-async function populateTableUsers() {
-  for (let index = 0; index < users.length; index++) {
-    const { first_name, last_name, email, catchphrase } = users[index];
+async function populateUsersTable() {
+  // Prepara los datos para la inserción masiva
+  const userData = users.map((user) => ({
+    firstName: user.first_name,
+    lastName: user.last_name,
+    email: user.email,
+    catchphrase: user.catchphrase,
+  }));
 
-    const timestamp = 'now()';
-
-    //SQL to populate the table.
-    const sqlString = `INSERT into users (first_name,last_name,email,catchphrase,timestamp) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
-    const response = await query(sqlString, [
-      first_name,
-      last_name,
-      email,
-      catchphrase,
-      timestamp,
-    ]);
-    console.log(response);
+  try {
+    await User.bulkCreate(userData);
+    console.log('Users have been inserted successfully.');
+  } catch (error) {
+    console.error('Unable to insert the users:', error);
   }
 }
 
-populateTableUsers();
+populateUsersTable();

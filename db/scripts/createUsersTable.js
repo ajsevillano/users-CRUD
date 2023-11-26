@@ -1,17 +1,12 @@
-import query from '../index.js';
+import { User } from '../models/users';
 
-const userQuery = `CREATE TABLE IF NOT EXISTS users(
-  id SERIAL PRIMARY KEY,
-  first_name TEXT,
-  last_name TEXT,
-  email TEXT,
-  catchphrase TEXT,
-  timestamp TIMESTAMPTZ NOT NULL DEFAULT now()
-  )`;
-
-async function createUserTable() {
-  const res = await query(userQuery);
-  console.log(res);
-}
-
-createUserTable();
+// Sync the model with the database
+User.sync({ force: false })
+  .then(() => {
+    console.log('User table has been created.');
+    sequelize.close();
+  })
+  .catch((error) => {
+    console.error('Unable to create the table:', error);
+    sequelize.close();
+  });
