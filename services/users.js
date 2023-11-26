@@ -45,7 +45,7 @@ export async function createUser(newUser) {
     });
     return responseHandler(true, user);
   } catch (error) {
-    return responseHandler(false, 'Unable to create the user.');
+    return responseHandler(false, 'Unable to create the user');
   }
 }
 
@@ -96,6 +96,7 @@ export async function updateUserByID(id, updatedUser) {
 export async function deleteUserByID(id) {
   //Convert the string id to a number
   let userId = Number(id);
+
   try {
     // Delete the user from the database
     const numberOfDestroyedRows = await User.destroy({
@@ -107,7 +108,7 @@ export async function deleteUserByID(id) {
       return responseHandler(true, `User with ID ${id} not found.`);
     }
 
-    return responseHandler(true, `User with ID ${id} deleted.`);
+    return responseHandler(true, `User with ID ${id} deleted`);
   } catch (error) {
     console.error('Unable to delete the user:', error);
     return responseHandler(false, 'Unable to delete the user.');
