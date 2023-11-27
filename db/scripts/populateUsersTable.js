@@ -1,5 +1,5 @@
 import { users } from '../mockData/users.js';
-import { User } from './createUsersTable.js';
+import { User } from '../models/users.js';
 
 async function populateUsersTable() {
   // Prepara los datos para la inserción masiva

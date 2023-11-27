@@ -1,6 +1,6 @@
 import dbConfig from './dbConfig.js';
 
-import { Sequelize, DataTypes } from 'sequelize';
+import { Sequelize } from 'sequelize';
 
 // INITIALIZE SEQUELIZE
 const sequelize = new Sequelize(

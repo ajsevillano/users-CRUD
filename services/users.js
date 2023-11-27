@@ -1,4 +1,3 @@
-import query from '../db/index.js';
 import { User } from '../db/models/users.js';
 
 // GET ALL USERS
@@ -11,7 +10,7 @@ export async function getUsers() {
   }
 }
 
-// GET A USER BY ID (UNUSED YET)
+// GET A USER BY ID
 export async function getUserByID(id) {
   try {
     const user = await User.findByPk(id);
@@ -64,7 +63,6 @@ export async function updateUserByID(id, updatedUser) {
   //Destructuring the body
   const { firstName, lastName, email, catchphrase } = updatedUser;
 
-  //Add the new user to the data
   try {
     // Update the user in the database
     const [numberOfAffectedRows, [updatedUser]] = await User.update(
@@ -84,7 +82,6 @@ export async function updateUserByID(id, updatedUser) {
     if (numberOfAffectedRows === 0) {
       return responseHandler(false, `User with ID ${userId} not found.`);
     }
-
     return { success: true, data: updatedUser };
   } catch (error) {
     console.error('Unable to update the user:', error);
