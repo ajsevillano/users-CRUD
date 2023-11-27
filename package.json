@@ -1,6 +1,6 @@
 {
   "name": "fullstack-crud-app",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A full stack CRUD Api and a frontend to serve it",
   "main": "app.js",
   "type": "module",
@@ -16,7 +16,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "pg": "^8.7.1"
+    "mysql2": "^3.6.5",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.35.1"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",

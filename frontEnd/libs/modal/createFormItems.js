@@ -14,11 +14,11 @@ export function createFormItems(
   modalContent,
   modalBox,
   modalContainer,
-  timestamp
+  timestamp,
 ) {
   const modalInputNodes = [
-    { id: 'first_name', value: firstName, label: 'Name' },
-    { id: 'last_name', value: lastName, label: 'Last name' },
+    { id: 'firstName', value: firstName, label: 'Name' },
+    { id: 'lastName', value: lastName, label: 'Last name' },
     { id: 'email', value: email, label: 'Email' },
     { id: 'catchphrase', value: catchphrase, label: 'Catchphrase' },
   ];
@@ -33,7 +33,7 @@ function createH1Title(firstName, modalContent) {
   const modalH1 = createDomElement(
     'h1',
     `Update info for the user ${firstName}`,
-    null
+    null,
   );
   modalContent.appendChild(modalH1);
 }
@@ -49,7 +49,7 @@ function createUpdateTime(modalContent, timestamp) {
   const updateTime = createDomElement(
     'p',
     `Last update: ${date} at ${time}`,
-    null
+    null,
   );
   modalContent.appendChild(updateTime);
 }
@@ -111,7 +111,7 @@ function createButtons(id, modalContent, modalBox, modalContainer) {
     modalBox,
     modalContainer,
     buttonCancel,
-    buttonUpdate
+    buttonUpdate,
   );
 }
 
@@ -119,7 +119,7 @@ function appendTheButtons(
   modalContent,
   buttonsContainer,
   buttonCancel,
-  buttonUpdate
+  buttonUpdate,
 ) {
   //Append buttons
   modalContent.appendChild(buttonsContainer);
@@ -133,7 +133,7 @@ function createEventListeners(
   modalBox,
   modalContainer,
   buttonCancel,
-  buttonUpdate
+  buttonUpdate,
 ) {
   const updateUserParams = [
     id,

@@ -4,6 +4,7 @@ const dbConfig = {
   database: process.env.DBNAME,
   password: process.env.DBPASSWORD,
   port: process.env.DBPORT,
+  dbtype: process.env.DBTYPE,
 };
 
 export default dbConfig;

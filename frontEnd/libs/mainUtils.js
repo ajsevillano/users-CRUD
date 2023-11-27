@@ -14,12 +14,12 @@ export function mapUsersList(usersListById) {
   return usersListById.map((user) =>
     generateTableRow(
       user.id,
-      user.first_name,
-      user.last_name,
+      user.firstName,
+      user.lastName,
       user.email,
       user.catchphrase,
-      user.timestamp
-    )
+      user.timestamp,
+    ),
   );
 }
 
@@ -28,7 +28,7 @@ export function createEventListeners() {
   const getAllInputs = getAllElements('.add-user-form-container', 'input');
   return getAllInputs.map((element) => {
     element.addEventListener('keyup', (e) =>
-      updateFormObjectValues(e, element.id)
+      updateFormObjectValues(e, element.id),
     );
   });
 }

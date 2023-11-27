@@ -1,15 +1,16 @@
-import pg from 'pg';
 import dbConfig from './dbConfig.js';
 
-const pool = new pg.Pool({
-  user: dbConfig.user,
-  host: dbConfig.host,
-  database: dbConfig.database,
-  password: dbConfig.password,
-  port: dbConfig.port,
-  ssl: { rejectUnauthorized: false },
-});
+import { Sequelize } from 'sequelize';
 
-export default function query(text, params) {
-  return pool.query(text, params);
-}
+// INITIALIZE SEQUELIZE
+const sequelize = new Sequelize(
+  dbConfig.database,
+  dbConfig.user,
+  dbConfig.password,
+  {
+    host: dbConfig.host,
+    dialect: dbConfig.dbtype,
+  },
+);
+
+export default sequelize;
