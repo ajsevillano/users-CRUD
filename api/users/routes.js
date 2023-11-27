@@ -6,7 +6,7 @@ import {
   createUser,
   updateUserByID,
   deleteUserByID,
-} from '../services/users.js';
+} from './services.js';
 
 // GET ALL USERS
 router.get('/users', async function (req, res) {

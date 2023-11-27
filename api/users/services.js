@@ -1,4 +1,4 @@
-import { User } from '../db/models/users.js';
+import { User } from '../../db/models/users.js';
 
 // GET ALL USERS
 export async function getUsers() {
