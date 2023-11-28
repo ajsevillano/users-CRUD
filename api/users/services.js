@@ -1,4 +1,5 @@
 import { User } from '../../db/models/users.js';
+import { validateBody } from './validators.js';
 
 // GET ALL USERS
 export async function getUsers() {
@@ -6,7 +7,7 @@ export async function getUsers() {
     const data = await User.findAll();
     return responseHandler(true, data);
   } catch (error) {
-    console.error('Unable to get the users:', error);
+    throw new Error('Unable to get the users');
   }
 }
 
@@ -20,19 +21,16 @@ export async function getUserByID(id) {
       return responseHandler(true, user);
     }
   } catch (error) {
-    console.error('Unable to get the user:', error);
+    throw new Error('Unable to get the user');
   }
 }
 
 // CREATE A USER
 export async function createUser(newUser) {
-  //Check if the body is empty
-  const checkbody = checkBodyObjIsEmpty(newUser);
-  //If the object sent as body is empty, we return an error message
-  if (checkbody) {
-    //Return the response for the error
-    return responseHandler(false, errorMsgNoBody);
-  }
+  //Validate the body of the request
+  const validationFails = validateBody(newUser);
+  if (validationFails) return validationFails;
+
   //Destructuring the body
   const { firstName, lastName, email, catchphrase } = newUser;
   try {
@@ -50,13 +48,9 @@ export async function createUser(newUser) {
 
 // UPDATE A USER BY ID
 export async function updateUserByID(id, updatedUser) {
-  //Check if the body is empty
-  const checkbody = checkBodyObjIsEmpty(updatedUser);
-  //If the object sent as body is empty, we return an error message
-  if (checkbody) {
-    //Return the response for the error
-    return responseHandler(false, errorMsgNoBody);
-  }
+  //Validate the body of the request
+  const validationFails = validateBody(updatedUser);
+  if (validationFails) return validationFails;
 
   //Convert the string id to a number
   let userId = Number(id);
@@ -112,18 +106,13 @@ export async function deleteUserByID(id) {
   }
 }
 
-function checkBodyObjIsEmpty(body) {
-  //Check if the body  sent in the request is empty
-  return Object.keys(body).length === 0 ? true : false;
-}
-
 const errorMsgNoBody = `The body can't be empty. An object with the fields: 'fist_name','last_name','email' and 'catchphrase' need to be send as body`;
 
 function errorMsgNotExist(userId) {
   return `The user with id ${userId} does not exist.`;
 }
 
-function responseHandler(status, statusMsg) {
+export function responseHandler(status, statusMsg) {
   return {
     success: status,
     payload: statusMsg,

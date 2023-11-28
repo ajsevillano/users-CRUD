@@ -106,38 +106,39 @@ This is a list of the end points used by the Api. You can test the endpoints usi
 ### Get all users endpoint
 
 ```javascript
-// (GET) Return all the users
 localhost: 3000 / api / users;
 ```
 
 ### Get user by Id endpoint
 
 ```javascript
-// (GET) Return an user by Id
 localhost:3000/api/users/:id
 ```
 
 ### Create endpoint
 
 ```javascript
-// (POST) Create a new user in the database
-localhost:3000/api/users/
-You will need to provide the data in the body of the request
-{
-  firstName: 'Example',
-  lastName: 'Example',
-  email:'example@example.com',
-  catchphrase: 'Example catchphrase',
-}
+localhost: 3000 /
+  api /
+  users /
+  // You will need to provide the data in the body of the request
 
+  {
+    firstName: 'Example',
+    lastName: 'Example',
+    email: 'example@example.com',
+    catchphrase: 'Example catchphrase',
+  };
 ```
 
 ### Update endpoint
 
 ```javascript
-// (PUT) Update an user by Id
+
 localhost:3000/api/users/:id
-You will need to provide the data in the body of the request
+
+// You will need to provide the data in the body of the request
+
 {
 firstName: 'Example',
 lastName: 'Example',
@@ -149,7 +150,6 @@ catchphrase: 'Example catchphrase',
 ### Delete endpoint
 
 ```javascript
-// (DELETE) Delete an user based on the Id
 localhost:3001/api/users/:id
 
 ```
